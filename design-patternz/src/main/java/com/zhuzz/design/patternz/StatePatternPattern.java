@@ -86,10 +86,16 @@ public class StatePatternPattern {
 
         public void openDoors() {
             state.openDoors();
+            if (!(state instanceof OpenState)) {
+                setState(new OpenState());
+            }
         }
 
         public void closeDoors() {
             state.closeDoors();
+            if (!(state instanceof CloseState)) {
+                setState(new CloseState());
+            }
         }
 
         public void move() {
