@@ -15,7 +15,7 @@ public class TemplateMethodPattern {
 
     static abstract class AbstractClass {
         // 模板方法，定义算法的骨架
-        public void templateMethod() {
+        public final void templateMethod() {
             step1();
             step2();
             step3();

@@ -18,17 +18,20 @@ public class CommandPattern {
 
         remote.setCommand(livingRoomLightOn);
         remote.pressButton(); // 打开电灯
+        remote.pressUndoButton(); // 撤销：关闭电灯
 
         remote.setCommand(livingRoomLightOff);
         remote.pressButton(); // 关闭电灯
+        remote.pressUndoButton(); // 撤销：打开电灯
     }
 
     interface Command {
         void execute();
+        void undo();
     }
 
     static class LightOnCommand implements Command {
-        private Light light;
+        private final Light light;
 
         public LightOnCommand(Light light) {
             this.light = light;
@@ -38,10 +41,15 @@ public class CommandPattern {
         public void execute() {
             light.turnOn();
         }
+
+        @Override
+        public void undo() {
+            light.turnOff();
+        }
     }
 
     static class LightOffCommand implements Command {
-        private Light light;
+        private final Light light;
 
         public LightOffCommand(Light light) {
             this.light = light;
@@ -50,6 +58,11 @@ public class CommandPattern {
         @Override
         public void execute() {
             light.turnOff();
+        }
+
+        @Override
+        public void undo() {
+            light.turnOn();
         }
     }
 
@@ -72,6 +85,10 @@ public class CommandPattern {
 
         public void pressButton() {
             command.execute();
+        }
+
+        public void pressUndoButton() {
+            command.undo();
         }
     }
 

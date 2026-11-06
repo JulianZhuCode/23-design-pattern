@@ -1,7 +1,7 @@
 package com.zhuzz.design.patternz;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * 观察者模式
@@ -38,7 +38,7 @@ public class ObserverPattern {
 
 
     static class ConcreteSubject implements Subject {
-        private List<Observer> observers = new ArrayList<>();
+        private final List<Observer> observers = new CopyOnWriteArrayList<>();
         private int state;
 
         public int getState() {
@@ -75,7 +75,7 @@ public class ObserverPattern {
 
 
     static class ConcreteObserver implements Observer {
-        private String name;
+        private final String name;
 
         public ConcreteObserver(String name) {
             this.name = name;

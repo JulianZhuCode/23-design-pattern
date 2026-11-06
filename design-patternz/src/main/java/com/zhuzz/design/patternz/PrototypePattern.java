@@ -2,6 +2,7 @@ package com.zhuzz.design.patternz;
 
 /**
  * 原型模式
+ *
  * @author zhuzz
  * 2023/8/29 17:27
  */

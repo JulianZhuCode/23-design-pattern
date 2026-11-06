@@ -10,22 +10,40 @@ public class AbstractFactoryPattern {
     public static void main(String[] args) {
         SoftwareFactory windowsFactory = new WindowsFactory();
         OperatingSystem windowsOS = windowsFactory.createOperatingSystem();
-        Application windowsApp = windowsFactory.createApplication();
+        WordProcessor windowsWord = windowsFactory.createWordProcessor();
+        Spreadsheet windowsSheet = windowsFactory.createSpreadsheet();
 
         windowsOS.run();
-        windowsApp.open();
+        windowsWord.editDocument();
+        windowsSheet.calculate();
+
+        System.out.println("----------");
 
         SoftwareFactory linuxFactory = new LinuxFactory();
         OperatingSystem linuxOS = linuxFactory.createOperatingSystem();
-        Application linuxApp = linuxFactory.createApplication();
+        WordProcessor linuxWord = linuxFactory.createWordProcessor();
+        Spreadsheet linuxSheet = linuxFactory.createSpreadsheet();
 
         linuxOS.run();
-        linuxApp.open();
+        linuxWord.editDocument();
+        linuxSheet.calculate();
     }
+
+    // ========== 抽象产品 ==========
 
     interface OperatingSystem {
         void run();
     }
+
+    interface WordProcessor {
+        void editDocument();
+    }
+
+    interface Spreadsheet {
+        void calculate();
+    }
+
+    // ========== Windows 产品族 ==========
 
     static class WindowsOS implements OperatingSystem {
         @Override
@@ -34,6 +52,22 @@ public class AbstractFactoryPattern {
         }
     }
 
+    static class Word implements WordProcessor {
+        @Override
+        public void editDocument() {
+            System.out.println("Editing document with Microsoft Word");
+        }
+    }
+
+    static class Excel implements Spreadsheet {
+        @Override
+        public void calculate() {
+            System.out.println("Calculating with Microsoft Excel");
+        }
+    }
+
+    // ========== Linux 产品族 ==========
+
     static class LinuxOS implements OperatingSystem {
         @Override
         public void run() {
@@ -41,29 +75,29 @@ public class AbstractFactoryPattern {
         }
     }
 
-    static interface Application {
-        void open();
-    }
-
-    static class WordApplication implements Application {
+    static class LibreWriter implements WordProcessor {
         @Override
-        public void open() {
-            System.out.println("Opening Word Application");
+        public void editDocument() {
+            System.out.println("Editing document with LibreOffice Writer");
         }
     }
 
-    static class ExcelApplication implements Application {
+    static class LibreCalc implements Spreadsheet {
         @Override
-        public void open() {
-            System.out.println("Opening Excel Application");
+        public void calculate() {
+            System.out.println("Calculating with LibreOffice Calc");
         }
     }
+
+    // ========== 抽象工厂 ==========
 
     interface SoftwareFactory {
         OperatingSystem createOperatingSystem();
-
-        Application createApplication();
+        WordProcessor createWordProcessor();
+        Spreadsheet createSpreadsheet();
     }
+
+    // ========== 具体工厂 ==========
 
     static class WindowsFactory implements SoftwareFactory {
         @Override
@@ -72,8 +106,13 @@ public class AbstractFactoryPattern {
         }
 
         @Override
-        public Application createApplication() {
-            return new ExcelApplication();
+        public WordProcessor createWordProcessor() {
+            return new Word();
+        }
+
+        @Override
+        public Spreadsheet createSpreadsheet() {
+            return new Excel();
         }
     }
 
@@ -84,10 +123,13 @@ public class AbstractFactoryPattern {
         }
 
         @Override
-        public Application createApplication() {
-            return new WordApplication();
+        public WordProcessor createWordProcessor() {
+            return new LibreWriter();
+        }
+
+        @Override
+        public Spreadsheet createSpreadsheet() {
+            return new LibreCalc();
         }
     }
 }
-
-

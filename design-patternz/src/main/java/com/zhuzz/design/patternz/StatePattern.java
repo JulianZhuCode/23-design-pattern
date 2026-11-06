@@ -6,7 +6,7 @@ package com.zhuzz.design.patternz;
  * @author zhuzz
  * 2023/8/29 17:56
  */
-public class StatePatternPattern {
+public class StatePattern {
 
     public static void main(String[] args) {
         Elevator elevator = new Elevator();
@@ -64,7 +64,29 @@ public class StatePatternPattern {
 
         @Override
         public void move() {
-            System.out.println("Moving.");
+            System.out.println("Start moving.");
+        }
+
+        @Override
+        public void stop() {
+            System.out.println("Already stopped.");
+        }
+    }
+
+    static class MovingState implements ElevatorState {
+        @Override
+        public void openDoors() {
+            System.out.println("Cannot open doors while moving.");
+        }
+
+        @Override
+        public void closeDoors() {
+            System.out.println("Doors are already closed.");
+        }
+
+        @Override
+        public void move() {
+            System.out.println("Already moving.");
         }
 
         @Override
@@ -100,10 +122,16 @@ public class StatePatternPattern {
 
         public void move() {
             state.move();
+            if (state instanceof CloseState) {
+                setState(new MovingState());
+            }
         }
 
         public void stop() {
             state.stop();
+            if (state instanceof MovingState) {
+                setState(new CloseState());
+            }
         }
     }
 

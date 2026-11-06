@@ -1,6 +1,5 @@
 package com.zhuzz.design.patternz;
 
-import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,7 +10,7 @@ import java.util.Map;
  * 2023/8/29 17:41
  */
 public class FlyweightPattern {
-
+    enum Color { RED, GREEN, BLUE, YELLOW }
     public static void main(String[] args) {
         Color[] colors = {Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW};
 
@@ -28,7 +27,7 @@ public class FlyweightPattern {
     }
 
     static class Circle implements Shape {
-        private Color color;
+        private final Color color;
 
         public Circle(Color color) {
             this.color = color;
@@ -44,14 +43,8 @@ public class FlyweightPattern {
         private static final Map<Color, Shape> circleMap = new HashMap<>();
 
         public static Shape getCircle(Color color) {
-            Shape circle = circleMap.get(color);
 
-            if (circle == null) {
-                circle = new Circle(color);
-                circleMap.put(color, circle);
-            }
-
-            return circle;
+            return circleMap.computeIfAbsent(color, Circle::new);
         }
     }
 
