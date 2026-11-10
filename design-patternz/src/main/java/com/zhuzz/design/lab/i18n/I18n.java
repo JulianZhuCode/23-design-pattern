@@ -18,8 +18,28 @@ public class I18n {
     // 并新增对应的 i18n/messages_<locale>.properties 文件。
     // 索引顺序即语言列表顺序，首位固定为英文作为默认与回退语言。
     static {
-        register(new ResourceBundleMessages(ResourceBundle.getBundle("i18n.messages", Locale.ENGLISH)));
-        register(new ResourceBundleMessages(ResourceBundle.getBundle("i18n.messages", Locale.SIMPLIFIED_CHINESE)));
+        register(new ResourceBundleMessages(ResourceBundle.getBundle("i18n.messages", Locale.ENGLISH), Locale.ENGLISH));
+        register(new ResourceBundleMessages(ResourceBundle.getBundle("i18n.messages", Locale.SIMPLIFIED_CHINESE), Locale.SIMPLIFIED_CHINESE));
+        applySystemLanguage();
+    }
+
+    /** 根据系统 locale 选择默认语言：优先精确匹配（语言+地区），其次按语言匹配，未命中则回退英文 */
+    private static void applySystemLanguage() {
+        Locale system = Locale.getDefault();
+        for (int i = 0; i < providers.size(); i++) {
+            if (providers.get(i).locale().equals(system)) {
+                currentIndex = i;
+                return;
+            }
+        }
+        String lang = system.getLanguage();
+        for (int i = 0; i < providers.size(); i++) {
+            if (providers.get(i).locale().getLanguage().equals(lang)) {
+                currentIndex = i;
+                return;
+            }
+        }
+        currentIndex = FALLBACK_INDEX;
     }
 
     public static void register(I18nProvider provider) {

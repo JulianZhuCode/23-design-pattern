@@ -10,9 +10,11 @@ import java.util.ResourceBundle;
 public class ResourceBundleMessages implements I18nProvider {
 
     private final ResourceBundle bundle;
+    private final Locale locale;
 
-    public ResourceBundleMessages(ResourceBundle bundle) {
+    public ResourceBundleMessages(ResourceBundle bundle, Locale locale) {
         this.bundle = bundle;
+        this.locale = locale;
     }
 
     @Override
@@ -28,6 +30,6 @@ public class ResourceBundleMessages implements I18nProvider {
 
     @Override
     public Locale locale() {
-        return bundle.getLocale();
+        return locale;
     }
 }
