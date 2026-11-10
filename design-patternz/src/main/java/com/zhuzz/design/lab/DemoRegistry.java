@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * 通过扫描案例根包（com.zhuzz.design.patternz）自动发现所有 DemoCase 实现，
- * 并按分类、模式名分组。新增案例只需在对应包下新建类继承 BaseDemoCase，
+ * 并按分类、模式名分组。新增案例只需在对应包下新建类实现 DemoCase，
  * 无需任何注册文件，多人并行开发也不会产生共享文件冲突。
  */
 public class DemoRegistry {
