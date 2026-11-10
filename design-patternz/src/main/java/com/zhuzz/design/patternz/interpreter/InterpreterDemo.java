@@ -9,7 +9,6 @@ import java.util.Map;
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
 public class InterpreterDemo implements DemoCase {
-    @Override public I18nMessages category() { return CAT_BEHAVIORAL; }
     @Override public I18nMessages pattern() { return PAT_INTERPRETER; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Math Expression", Locale.SIMPLIFIED_CHINESE, "数学表达式");

@@ -9,7 +9,6 @@ import java.util.Map;
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
 public class StateDemo implements DemoCase {
-    @Override public I18nMessages category() { return CAT_BEHAVIORAL; }
     @Override public I18nMessages pattern() { return PAT_STATE; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Elevator State", Locale.SIMPLIFIED_CHINESE, "电梯状态");

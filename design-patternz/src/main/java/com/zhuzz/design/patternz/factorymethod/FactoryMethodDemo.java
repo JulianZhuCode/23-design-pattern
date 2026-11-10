@@ -9,7 +9,6 @@ import java.util.Map;
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
 public class FactoryMethodDemo implements DemoCase {
-    @Override public I18nMessages category() { return CAT_CREATIONAL; }
     @Override public I18nMessages pattern() { return PAT_FACTORY_METHOD; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Shape Factory", Locale.SIMPLIFIED_CHINESE, "图形工厂");

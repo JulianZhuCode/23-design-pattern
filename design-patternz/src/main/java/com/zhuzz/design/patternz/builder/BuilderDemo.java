@@ -9,7 +9,6 @@ import java.util.Map;
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
 public class BuilderDemo implements DemoCase {
-    @Override public I18nMessages category() { return CAT_CREATIONAL; }
     @Override public I18nMessages pattern() { return PAT_BUILDER; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "House Builder", Locale.SIMPLIFIED_CHINESE, "房屋建造");

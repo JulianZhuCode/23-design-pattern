@@ -9,7 +9,6 @@ import java.util.Map;
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
 public class DecoratorDemo implements DemoCase {
-    @Override public I18nMessages category() { return CAT_STRUCTURAL; }
     @Override public I18nMessages pattern() { return PAT_DECORATOR; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Coffee Topping", Locale.SIMPLIFIED_CHINESE, "咖啡加料");

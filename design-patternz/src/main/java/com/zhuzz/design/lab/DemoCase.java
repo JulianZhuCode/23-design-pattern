@@ -12,9 +12,12 @@ import java.util.Map;
  */
 public interface DemoCase {
 
-    I18nMessages category();
-
     I18nMessages pattern();
+
+    /** 案例所属分类，由 pattern() 推导，无需单独配置 */
+    default I18nMessages category() {
+        return pattern().category();
+    }
 
     /** 案例显示名的多语言映射：key 为语言，value 为显示值 */
     Map<Locale, String> caseNames();

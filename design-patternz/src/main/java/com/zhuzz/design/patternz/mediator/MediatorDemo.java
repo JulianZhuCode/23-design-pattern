@@ -9,7 +9,6 @@ import java.util.Map;
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
 public class MediatorDemo implements DemoCase {
-    @Override public I18nMessages category() { return CAT_BEHAVIORAL; }
     @Override public I18nMessages pattern() { return PAT_MEDIATOR; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Chat Room", Locale.SIMPLIFIED_CHINESE, "聊天室");

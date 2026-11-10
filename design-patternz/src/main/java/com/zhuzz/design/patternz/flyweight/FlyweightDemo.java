@@ -9,7 +9,6 @@ import java.util.Map;
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
 public class FlyweightDemo implements DemoCase {
-    @Override public I18nMessages category() { return CAT_STRUCTURAL; }
     @Override public I18nMessages pattern() { return PAT_FLYWEIGHT; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Circle Pool", Locale.SIMPLIFIED_CHINESE, "圆形共享");
