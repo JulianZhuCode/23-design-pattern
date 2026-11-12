@@ -30,8 +30,8 @@ Why it fits:
 - `Elevator` is the **context** that holds the current `ElevatorState`.
 - `OpenState`/`CloseState`/`MovingState` are **concrete states** implementing
   the same interface.
-- `Elevator` switches its state after each action, so the next action behaves
-  according to the new state.
+- Each concrete state holds a reference to `Elevator` and switches to the next
+  state itself.
 
 ## Structure
 
@@ -75,6 +75,5 @@ classDiagram
 
 - Each state encapsulates its own rules, so adding a new state does not touch the
   existing states.
-- The context stays clean: it only delegates and switches states, keeping all
-  branching inside the state classes.
-- Using `instanceof` in the context keeps the transition logic simple and clear.
+- The context stays clean: it only delegates, keeping all branching and
+  transitions inside the state classes.

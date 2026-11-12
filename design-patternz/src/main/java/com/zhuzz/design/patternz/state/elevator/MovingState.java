@@ -1,7 +1,13 @@
 package com.zhuzz.design.patternz.state.elevator;
 
-/** 具体状态：移动中 */
+/** 具体状态：移动中，负责本状态下的行为与状态迁移 */
 public class MovingState implements ElevatorState {
+    private final Elevator elevator;
+
+    public MovingState(Elevator elevator) {
+        this.elevator = elevator;
+    }
+
     @Override
     public void openDoors() {
         System.out.println("Cannot open doors while moving.");
@@ -20,5 +26,6 @@ public class MovingState implements ElevatorState {
     @Override
     public void stop() {
         System.out.println("Stopping.");
+        elevator.setState(new CloseState(elevator));
     }
 }

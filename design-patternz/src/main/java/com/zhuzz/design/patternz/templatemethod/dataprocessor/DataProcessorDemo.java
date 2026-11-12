@@ -14,7 +14,10 @@ public class DataProcessorDemo implements DemoCase {
         return Map.of(Locale.ENGLISH, "Data Processor", Locale.SIMPLIFIED_CHINESE, "数据处理");
     }
     @Override public void run() {
-        AbstractClass template = new ConcreteClass();
-        template.templateMethod();
+        DataProcessor csvProcessor = new CsvDataProcessor();
+        csvProcessor.process();
+
+        DataProcessor jsonProcessor = new JsonDataProcessor();
+        jsonProcessor.process();
     }
 }

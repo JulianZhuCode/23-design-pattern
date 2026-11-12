@@ -14,19 +14,19 @@ public class ReimbursementDemo implements DemoCase {
         return Map.of(Locale.ENGLISH, "Reimbursement", Locale.SIMPLIFIED_CHINESE, "报销审批");
     }
     @Override public void run() {
-        ReimbursementHandler manager = new ManagerHandler();
         ReimbursementHandler departmentHead = new DepartmentHeadHandler();
+        ReimbursementHandler manager = new ManagerHandler();
         ReimbursementHandler finance = new FinanceHandler();
 
-        manager.setSuccessor(departmentHead);
-        departmentHead.setSuccessor(finance);
+        departmentHead.setSuccessor(manager);
+        manager.setSuccessor(finance);
 
         ReimbursementRequest request1 = new ReimbursementRequest(800, "购买办公用品");
         ReimbursementRequest request2 = new ReimbursementRequest(3000, "参加培训");
         ReimbursementRequest request3 = new ReimbursementRequest(10000, "举办团建活动");
 
-        manager.handleRequest(request1);
-        manager.handleRequest(request2);
-        manager.handleRequest(request3);
+        departmentHead.handleRequest(request1);
+        departmentHead.handleRequest(request2);
+        departmentHead.handleRequest(request3);
     }
 }

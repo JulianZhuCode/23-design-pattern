@@ -1,24 +1,25 @@
 # Data Processor — Template Method
 
-> Defines a fixed algorithm skeleton in an abstract class and lets a subclass
+> Defines a fixed algorithm skeleton in an abstract class and lets subclasses
 > fill in the concrete steps.
 
 ## Big Picture
 
 ```mermaid
 flowchart LR
-    C[Client] --> A[AbstractClass]
-    A -->|templateMethod| CC[ConcreteClass]
-    CC --> S1[Step 1]
-    CC --> S2[Step 2]
-    CC --> S3[Step 3]
+    C[Client] --> D[DataProcessor]
+    D -->|process| CSV[CsvDataProcessor]
+    D -->|process| JSON[JsonDataProcessor]
+    CSV --> S[read / parse / save]
+    JSON --> S
 ```
 
 ## Scenario
 
-A data-processing pipeline always runs the same three steps, but the concrete
-work in each step may vary. The template method fixes the order, while subclasses
-implement the individual steps.
+A data-import pipeline always runs the same three steps — read the raw data,
+parse it, and save the result — but the file format (CSV vs JSON) changes the
+concrete work in each step. The template method fixes the order, while
+subclasses implement the individual steps.
 
 ## Design Pattern
 
@@ -27,39 +28,41 @@ deferring some steps to subclasses.
 
 Why it fits:
 
-- `AbstractClass` holds the `templateMethod()` that calls `step1()`/`step2()`/
-  `step3()` in a fixed order.
-- `ConcreteClass` implements the abstract steps.
+- `DataProcessor` holds the `process()` method that calls `readData()` /
+  `parseData()` / `saveData()` in a fixed order.
+- `CsvDataProcessor` and `JsonDataProcessor` implement only the abstract steps.
 - The skeleton cannot be overridden (`final`), so the algorithm order is stable.
 
 ## Structure
 
 ```mermaid
 classDiagram
-    class AbstractClass {
+    class DataProcessor {
         <<abstract>>
-        +templateMethod() final
-        #step1() abstract
-        #step2() abstract
-        #step3() abstract
+        +process() final
+        #readData() abstract
+        #parseData(rawData) abstract
+        #saveData(parsedData) abstract
     }
-    class ConcreteClass
+    class CsvDataProcessor
+    class JsonDataProcessor
     class DataProcessorDemo
 
-    AbstractClass <|-- ConcreteClass
-    DataProcessorDemo ..> AbstractClass
+    DataProcessor <|-- CsvDataProcessor
+    DataProcessor <|-- JsonDataProcessor
+    DataProcessorDemo ..> DataProcessor
 ```
 
 | Role | Participants |
 |------|--------------|
-| Abstract class | `AbstractClass` |
-| Concrete class | `ConcreteClass` |
+| Abstract class | `DataProcessor` |
+| Concrete classes | `CsvDataProcessor`, `JsonDataProcessor` |
 | Client / demo | `DataProcessorDemo` |
 
 ## Design Rationale
 
 - The algorithm skeleton is centralized in one place, avoiding duplication across
   subclasses.
-- Marking `templateMethod()` as `final` prevents subclasses from breaking the
-  defined order.
+- Marking `process()` as `final` prevents subclasses from breaking the defined
+  order.
 - Subclasses only implement the variable steps, keeping them focused and small.
