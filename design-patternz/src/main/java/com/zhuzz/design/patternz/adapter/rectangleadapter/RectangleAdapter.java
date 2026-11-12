@@ -1,6 +1,6 @@
 package com.zhuzz.design.patternz.adapter.rectangleadapter;
 
-/** 适配器：将目标接口 Shape 适配到 LegacyRectangle 的两点坐标接口 */
+/** 适配器：将 Shape 适配到 LegacyRectangle 的两点坐标 | Adapter: adapts Shape to LegacyRectangle */
 public class RectangleAdapter implements Shape {
     private LegacyRectangle legacyRectangle;
 

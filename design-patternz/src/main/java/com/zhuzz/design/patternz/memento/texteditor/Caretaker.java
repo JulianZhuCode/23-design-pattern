@@ -1,6 +1,6 @@
 package com.zhuzz.design.patternz.memento.texteditor;
 
-/** 负责人：保管备忘录，但不修改其内容 */
+/** 负责人：保管备忘录，但不修改其内容 | Caretaker: keeps mementos without modifying */
 public class Caretaker {
     private Memento memento;
 

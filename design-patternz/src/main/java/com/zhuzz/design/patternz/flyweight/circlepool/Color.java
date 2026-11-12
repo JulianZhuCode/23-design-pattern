@@ -1,6 +1,6 @@
 package com.zhuzz.design.patternz.flyweight.circlepool;
 
-/** 共享对象的内部（固有）状态：颜色 */
+/** 内部状态（共享）：颜色 | Intrinsic (shared) state: color */
 public enum Color {
     RED, GREEN, BLUE, YELLOW
 }

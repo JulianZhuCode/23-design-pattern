@@ -1,6 +1,6 @@
 package com.zhuzz.design.patternz.interpreter.mathexpression;
 
-/** 非终结符表达式：减法 */
+/** 非终结符表达式：减法 | Non-terminal expression: subtraction */
 public class SubtractExpression implements Expression {
     private Expression leftOperand;
     private Expression rightOperand;

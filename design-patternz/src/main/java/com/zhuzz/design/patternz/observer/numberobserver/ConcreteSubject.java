@@ -3,7 +3,7 @@ package com.zhuzz.design.patternz.observer.numberobserver;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-/** 具体主题：维护观察者列表，状态变化时通知所有观察者 */
+/** 具体主题：维护观察者列表，状态变化时通知所有观察者 | Concrete subject: notifies observers on change */
 public class ConcreteSubject implements Subject {
     private final List<Observer> observers = new CopyOnWriteArrayList<>();
     private int state;

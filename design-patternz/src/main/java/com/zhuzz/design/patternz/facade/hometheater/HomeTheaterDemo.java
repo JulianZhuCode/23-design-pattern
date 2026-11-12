@@ -8,6 +8,7 @@ import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
+/** 外观模式演示：一键完成观影准备 | Facade demo: one-click movie setup */
 public class HomeTheaterDemo implements DemoCase {
     @Override public I18nMessages pattern() { return PAT_FACADE; }
     @Override public Map<Locale, String> caseNames() {
@@ -16,10 +17,10 @@ public class HomeTheaterDemo implements DemoCase {
     @Override public void run() {
         HomeTheaterFacade homeTheater = new HomeTheaterFacade();
 
-        // 准备观影
+        // 准备观影 | prepare to watch
         homeTheater.watchMovie();
 
-        // 结束观影
+        // 结束观影 | finish watching
         homeTheater.endMovie();
     }
 }

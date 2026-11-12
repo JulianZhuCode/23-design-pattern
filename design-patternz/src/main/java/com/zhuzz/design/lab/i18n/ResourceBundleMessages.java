@@ -4,8 +4,8 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
- * 基于 JDK 内置 ResourceBundle 的语言实现，
- * 文案由 classpath 下的 .properties 资源文件维护。
+ * 基于 JDK ResourceBundle 的语言实现，文案由 .properties 资源文件维护。
+ * Locale implementation backed by ResourceBundle and .properties files.
  */
 public class ResourceBundleMessages implements I18nProvider {
 
@@ -24,7 +24,7 @@ public class ResourceBundleMessages implements I18nProvider {
 
     @Override
     public String getLanguageName() {
-        // 约定：每种语言的 properties 必须包含 LANGUAGE_NAME 键
+        // 每种语言 properties 必须含 LANGUAGE_NAME 键 | Every bundle must define LANGUAGE_NAME
         return bundle.getString(I18nMessages.LANGUAGE_NAME.name());
     }
 

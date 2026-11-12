@@ -8,6 +8,7 @@ import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
+/** 迭代器模式演示：不暴露内部结构地遍历集合 | Iterator demo: traverse without exposing internals */
 public class CollectionIteratorDemo implements DemoCase {
     @Override public I18nMessages pattern() { return PAT_ITERATOR; }
     @Override public Map<Locale, String> caseNames() {

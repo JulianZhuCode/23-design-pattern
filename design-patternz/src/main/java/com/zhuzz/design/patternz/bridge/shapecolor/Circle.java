@@ -1,6 +1,6 @@
 package com.zhuzz.design.patternz.bridge.shapecolor;
 
-/** 扩展抽象化：圆形 */
+/** 扩展抽象化：圆形 | Refined abstraction: circle */
 public class Circle extends Shape {
     public Circle(Color color) {
         super(color);

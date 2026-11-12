@@ -1,6 +1,6 @@
 package com.zhuzz.design.patternz.abstractfactory.officesuite;
 
-/** Linux 具体工厂：产出整套 Linux 办公套件 */
+/** Linux 具体工厂：产出整套 Linux 办公套件 | Concrete factory: Linux suite */
 public class LinuxFactory implements OfficeSuiteFactory {
     @Override
     public WordProcessor createWordProcessor() {

@@ -8,6 +8,7 @@ import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
+/** 装饰者模式演示：动态给咖啡加料 | Decorator demo: add toppings dynamically */
 public class CoffeeToppingDemo implements DemoCase {
     @Override public I18nMessages pattern() { return PAT_DECORATOR; }
     @Override public Map<Locale, String> caseNames() {

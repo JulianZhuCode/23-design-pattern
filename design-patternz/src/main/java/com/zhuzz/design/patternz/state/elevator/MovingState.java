@@ -1,6 +1,6 @@
 package com.zhuzz.design.patternz.state.elevator;
 
-/** 具体状态：移动中，负责本状态下的行为与状态迁移 */
+/** 具体状态：移动中 | Concrete state: moving */
 public class MovingState implements ElevatorState {
     private final Elevator elevator;
 

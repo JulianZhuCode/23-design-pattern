@@ -8,6 +8,7 @@ import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
+/** 命令模式演示：遥控器开灯/关灯 | Command demo: remote light on/off */
 public class LightControlDemo implements DemoCase {
     @Override public I18nMessages pattern() { return PAT_COMMAND; }
     @Override public Map<Locale, String> caseNames() {
@@ -22,11 +23,11 @@ public class LightControlDemo implements DemoCase {
         RemoteControl remote = new RemoteControl();
 
         remote.setCommand(livingRoomLightOn);
-        remote.pressButton(); // 打开电灯
-        remote.pressUndoButton(); // 撤销：关闭电灯
+        remote.pressButton(); // 开灯 | turn on
+        remote.pressUndoButton(); // 撤销：关灯 | undo: turn off
 
         remote.setCommand(livingRoomLightOff);
-        remote.pressButton(); // 关闭电灯
-        remote.pressUndoButton(); // 撤销：打开电灯
+        remote.pressButton(); // 关灯 | turn off
+        remote.pressUndoButton(); // 撤销：开灯 | undo: turn on
     }
 }

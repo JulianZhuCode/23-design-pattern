@@ -1,6 +1,6 @@
 package com.zhuzz.design.patternz.mediator.chatroom;
 
-/** 用户：通过中介者与其他用户通信 */
+/** 用户：通过中介者与其他用户通信 | Colleague: communicates via mediator */
 public class User {
     private String name;
     private ChatMediator mediator;

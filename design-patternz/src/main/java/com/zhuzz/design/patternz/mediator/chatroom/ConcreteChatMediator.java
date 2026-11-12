@@ -3,7 +3,7 @@ package com.zhuzz.design.patternz.mediator.chatroom;
 import java.util.ArrayList;
 import java.util.List;
 
-/** 具体中介者：聊天室，维护用户列表并向其他用户转发消息 */
+/** 具体中介者：聊天室，维护用户列表并向其他用户转发消息 | Concrete mediator: chat room forwarding messages */
 public class ConcreteChatMediator implements ChatMediator {
     private final List<User> users = new ArrayList<>();
 

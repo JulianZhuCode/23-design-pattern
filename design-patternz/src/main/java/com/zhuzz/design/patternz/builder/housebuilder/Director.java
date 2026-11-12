@@ -1,6 +1,6 @@
 package com.zhuzz.design.patternz.builder.housebuilder;
 
-/** 指挥者：按固定顺序调用建造者组装房屋 */
+/** 指挥者：按固定顺序组装房屋 | Director: builds in a fixed order */
 public class Director {
     private HouseBuilder builder;
 

@@ -1,6 +1,6 @@
 package com.zhuzz.design.patternz.builder.housebuilder;
 
-/** 具体建造者：建造豪华房屋 */
+/** 具体建造者：建造豪华房屋 | Concrete builder: luxury house */
 public class LuxuryHouseBuilder extends HouseBuilder {
     @Override
     public void buildFoundation() {

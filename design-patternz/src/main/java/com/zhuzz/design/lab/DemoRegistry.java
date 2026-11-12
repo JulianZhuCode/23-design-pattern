@@ -12,13 +12,13 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
- * 通过扫描案例根包（com.zhuzz.design.patternz）自动发现所有 DemoCase 实现，
- * 并按分类、模式名分组。新增案例只需在对应包下新建类实现 DemoCase，
- * 无需任何注册文件，多人并行开发也不会产生共享文件冲突。
+ * 通过扫描案例根包自动发现所有 DemoCase 实现，并按分类、模式名分组。
+ * 新增案例只需新建类实现 DemoCase，无需注册文件。
+ * Auto-discovers all DemoCase implementations and groups them by category and pattern.
  */
 public class DemoRegistry {
 
-    /** 案例根包：新增案例类放在该包（或子包）下即被自动发现 */
+    /** 案例根包：类放在该包（或子包）下即被自动发现 | Root package for auto-discovery */
     private static final String BASE_PACKAGE = "com.zhuzz.design.patternz";
 
     public static final LinkedHashMap<I18nMessages, LinkedHashMap<I18nMessages, List<DemoCase>>> registry = new LinkedHashMap<>();
@@ -27,8 +27,8 @@ public class DemoRegistry {
         List<DemoCase> demos = new ArrayList<>();
         scanPackage(BASE_PACKAGE, demos);
 
-        // 按枚举声明顺序排序：category/pattern 的 ordinal 已在 I18nMessages 中
-        // 按 GOF 经典顺序声明，因此分类顺序为 创建型 → 结构型 → 行为型，模式名保持经典顺序。
+        // 按枚举声明顺序排序（GOF 经典顺序：创建型 → 结构型 → 行为型）
+        // Sort by enum ordinal (GoF order: creational → structural → behavioral)
         demos.sort(Comparator
                 .comparing((DemoCase d) -> d.category().ordinal())
                 .thenComparing(d -> d.pattern().ordinal()));
@@ -51,7 +51,7 @@ public class DemoRegistry {
                 if ("file".equals(url.getProtocol())) {
                     scanDir(new File(url.toURI()), packageName, out);
                 }
-                // 若未来打包成 jar 运行，需在此扩展 jar 协议（遍历 JarEntry）
+                // 打包成 jar 运行时需在此扩展 jar 协议 | Extend here for jar protocol if needed
             }
         } catch (Exception e) {
             throw new IllegalStateException("扫描案例包失败: " + packageName, e);
@@ -80,7 +80,7 @@ public class DemoRegistry {
                 out.add((DemoCase) type.getDeclaredConstructor().newInstance());
             }
         } catch (Exception | LinkageError ignored) {
-            // 跳过无法加载/实例化的类，避免单个类影响整体发现
+            // 跳过无法加载/实例化的类，避免影响整体发现 | Skip classes that cannot be instantiated
         }
     }
 

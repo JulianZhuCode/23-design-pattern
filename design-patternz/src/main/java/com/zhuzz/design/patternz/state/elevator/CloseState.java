@@ -1,6 +1,6 @@
 package com.zhuzz.design.patternz.state.elevator;
 
-/** 具体状态：关门，负责本状态下的行为与状态迁移 */
+/** 具体状态：关门 | Concrete state: doors closed */
 public class CloseState implements ElevatorState {
     private final Elevator elevator;
 

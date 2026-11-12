@@ -14,10 +14,10 @@ public class InnerClassSingletonDemo implements DemoCase {
         return Map.of(Locale.ENGLISH, "Static Inner Class", Locale.SIMPLIFIED_CHINESE, "静态内部类");
     }
     @Override public void run() {
-        // 获取单例实例
+        // 获取单例实例 | Get the singleton instance
         InnerClassSingleton singleton = InnerClassSingleton.getInstance();
 
-        // 调用成员方法
+        // 调用成员方法 | Call a member method
         singleton.showMessage();
     }
 }

@@ -10,20 +10,20 @@ public class I18n {
 
     private static final List<I18nProvider> providers = new ArrayList<>();
     private static final List<Runnable> listeners = new ArrayList<>();
-    /** 默认语言与未命中时的回退语言，固定为英文（注册在首位） */
+    /** 回退语言索引，固定为英文（注册在首位） | Fallback locale index (English first) */
     private static final int FALLBACK_INDEX = 0;
     private static int currentIndex = FALLBACK_INDEX;
 
-    // 语言注册：新增语言需在此追加一个 ResourceBundleMessages 注册，
-    // 并新增对应的 i18n/messages_<locale>.properties 文件。
-    // 索引顺序即语言列表顺序，首位固定为英文作为默认与回退语言。
+    // 语言注册：新增语言需在此追加注册并新增 messages_<locale>.properties。
+    // 索引顺序即语言列表顺序，首位固定为英文作为回退语言。
+    // Register languages here; index order defines the list order (English first).
     static {
         register(new ResourceBundleMessages(ResourceBundle.getBundle("i18n.messages", Locale.ENGLISH), Locale.ENGLISH));
         register(new ResourceBundleMessages(ResourceBundle.getBundle("i18n.messages", Locale.SIMPLIFIED_CHINESE), Locale.SIMPLIFIED_CHINESE));
         applySystemLanguage();
     }
 
-    /** 根据系统 locale 选择默认语言：优先精确匹配（语言+地区），其次按语言匹配，未命中则回退英文 */
+    /** 按系统 locale 选默认语言：精确匹配 → 语言匹配 → 英文 | Auto-select locale by system */
     private static void applySystemLanguage() {
         Locale system = Locale.getDefault();
         for (int i = 0; i < providers.size(); i++) {

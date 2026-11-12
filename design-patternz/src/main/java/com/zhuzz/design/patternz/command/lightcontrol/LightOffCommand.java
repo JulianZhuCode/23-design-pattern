@@ -1,6 +1,6 @@
 package com.zhuzz.design.patternz.command.lightcontrol;
 
-/** 具体命令：关灯，撤销为开灯 */
+/** 具体命令：关灯，撤销为开灯 | Concrete command: turn off, undo turns on */
 public class LightOffCommand implements Command {
     private final Light light;
 

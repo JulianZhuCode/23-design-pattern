@@ -1,6 +1,6 @@
 package com.zhuzz.design.patternz.templatemethod.dataprocessor;
 
-/** 具体类：CSV 数据处理流程，复用同一骨架、仅实现各可变步骤 */
+/** 具体类：CSV 数据处理流程 | Concrete class: CSV data processing */
 public class CsvDataProcessor extends DataProcessor {
 
     @Override

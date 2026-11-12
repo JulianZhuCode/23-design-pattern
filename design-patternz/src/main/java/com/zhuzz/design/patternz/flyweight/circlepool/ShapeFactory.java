@@ -3,7 +3,7 @@ package com.zhuzz.design.patternz.flyweight.circlepool;
 import java.util.HashMap;
 import java.util.Map;
 
-/** 享元工厂：按颜色缓存并复用圆形实例 */
+/** 享元工厂：按颜色缓存并复用圆形实例 | Flyweight factory: caches and reuses circles by color */
 public class ShapeFactory {
     private static final Map<Color, Shape> circleMap = new HashMap<>();
 

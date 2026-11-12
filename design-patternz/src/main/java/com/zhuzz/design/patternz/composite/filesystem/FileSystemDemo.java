@@ -14,7 +14,7 @@ public class FileSystemDemo implements DemoCase {
         return Map.of(Locale.ENGLISH, "File System", Locale.SIMPLIFIED_CHINESE, "文件系统");
     }
     @Override public void run() {
-        // 创建文件和文件夹
+        // 创建文件和文件夹 | create files and folders
         File file1 = new File("file1.txt");
         File file2 = new File("file2.txt");
         Directory subDirectory = new Directory("Subdirectory");
@@ -24,7 +24,7 @@ public class FileSystemDemo implements DemoCase {
         Directory rootDirectory = new Directory("Root");
         rootDirectory.addComponent(subDirectory);
 
-        // 展示文件系统结构
+        // 展示文件系统结构 | display the structure
         rootDirectory.displayInfo();
     }
 }

@@ -40,7 +40,7 @@ public enum I18nMessages {
     PAT_TEMPLATE_METHOD(CAT_BEHAVIORAL),
     PAT_VISITOR(CAT_BEHAVIORAL);
 
-    /** 所属分类：仅 PAT_* 常量有效，其余常量（语言/分类）为 null */
+    /** 所属分类：仅 PAT_* 常量有效，其余为 null | Category for PAT_* constants only */
     private final I18nMessages category;
 
     I18nMessages() {

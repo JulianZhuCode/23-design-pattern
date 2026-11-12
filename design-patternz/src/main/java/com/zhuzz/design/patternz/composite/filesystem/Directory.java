@@ -3,7 +3,7 @@ package com.zhuzz.design.patternz.composite.filesystem;
 import java.util.ArrayList;
 import java.util.List;
 
-/** 容器节点：目录，可包含文件和子目录 */
+/** 容器节点：目录，可包含文件和子目录 | Composite: directory holding children */
 public class Directory implements FileSystemComponent {
     private String name;
     private List<FileSystemComponent> components;

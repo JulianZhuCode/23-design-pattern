@@ -14,14 +14,14 @@ public class ShapeCloneDemo implements DemoCase {
         return Map.of(Locale.ENGLISH, "Shape Clone", Locale.SIMPLIFIED_CHINESE, "图形克隆");
     }
     @Override public void run() {
-        // 创建原型对象
+        // 创建原型对象 | Create the prototype
         Shape circle = new Shape("Circle");
 
-        // 克隆原型对象来创建新对象
+        // 克隆原型创建新对象 | Clone the prototype
         Shape clonedCircle = circle.clone();
         clonedCircle.setType("Cloned Circle");
 
-        // 输出原型对象和克隆对象的类型
+        // 输出原型与克隆的类型 | Print original and cloned types
         System.out.println("Original Shape Type: " + circle.getType());
         System.out.println("Cloned Shape Type: " + clonedCircle.getType());
     }

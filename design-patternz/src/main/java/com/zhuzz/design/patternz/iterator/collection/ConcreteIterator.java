@@ -2,7 +2,7 @@ package com.zhuzz.design.patternz.iterator.collection;
 
 import java.util.List;
 
-/** 具体迭代器：跟踪当前位置，顺序返回元素 */
+/** 具体迭代器：跟踪当前位置，顺序返回元素 | Concrete iterator: tracks position, returns next */
 public class ConcreteIterator<T> implements Iterator<T> {
     private final List<T> items;
     private int position = 0;

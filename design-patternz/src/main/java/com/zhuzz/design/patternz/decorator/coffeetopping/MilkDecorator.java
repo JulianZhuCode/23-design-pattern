@@ -1,6 +1,6 @@
 package com.zhuzz.design.patternz.decorator.coffeetopping;
 
-/** 具体装饰者：加牛奶 */
+/** 具体装饰者：加牛奶 | Concrete decorator: adds milk */
 public class MilkDecorator extends CoffeeDecorator {
     public MilkDecorator(Coffee coffee) {
         super(coffee);

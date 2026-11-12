@@ -1,6 +1,6 @@
 package com.zhuzz.design.patternz.chainofresponsibility.reimbursement;
 
-/** 报销请求：包含金额与说明 */
+/** 报销请求：包含金额与说明 | Request: amount and description */
 public class ReimbursementRequest {
     private double amount;
     private String description;

@@ -1,6 +1,6 @@
 package com.zhuzz.design.patternz.interpreter.mathexpression;
 
-/** 非终结符表达式：加法 */
+/** 非终结符表达式：加法 | Non-terminal expression: addition */
 public class AddExpression implements Expression {
     private Expression leftOperand;
     private Expression rightOperand;
