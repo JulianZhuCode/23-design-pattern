@@ -14,6 +14,7 @@ public enum I18nMessages {
     BTN_RUN,
     BTN_CLEAR,
     OUTPUT_TITLE,
+    TAB_README,
     STATUS_READY,
     STATUS_COUNT,
 

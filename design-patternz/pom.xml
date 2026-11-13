@@ -13,6 +13,112 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
+        <commonmark.version>0.23.0</commonmark.version>
+        <javafx.version>21.0.2</javafx.version>
+        <!-- OpenJFX 平台 classifier：无 classifier 的 jar 是空占位，类与本地库都在 classifier jar 中
+             OpenJFX platform classifier: classifier-less jars are empty placeholders -->
+        <javafx.classifier>win</javafx.classifier>
     </properties>
 
+    <dependencies>
+        <!-- Markdown 解析与渲染（README 展示）
+             Markdown parsing & rendering for README display -->
+        <dependency>
+            <groupId>org.commonmark</groupId>
+            <artifactId>commonmark</artifactId>
+            <version>${commonmark.version}</version>
+        </dependency>
+        <!-- GFM 表格扩展，README 中的表格依赖它
+             GFM tables extension, required by tables in the README files -->
+        <dependency>
+            <groupId>org.commonmark</groupId>
+            <artifactId>commonmark-ext-gfm-tables</artifactId>
+            <version>${commonmark.version}</version>
+        </dependency>
+
+        <!-- JavaFX WebView：渲染 Markdown + Mermaid 图（README 展示）
+             JavaFX WebView renders Markdown + Mermaid diagrams for README display
+             注意：OpenJFX 的类与本地库都打包在带平台 classifier 的 jar 中，需显式声明全部所需模块
+             Note: OpenJFX ships classes + natives in the platform-classified jars only -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-base</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>${javafx.classifier}</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>${javafx.classifier}</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>${javafx.classifier}</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-media</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>${javafx.classifier}</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-web</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>${javafx.classifier}</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-swing</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>${javafx.classifier}</classifier>
+        </dependency>
+    </dependencies>
+
+    <!-- 依据操作系统切换 JavaFX 平台 classifier（Windows 用默认值 win）
+         Selects the JavaFX platform classifier by OS (Windows uses the default 'win') -->
+    <profiles>
+        <profile>
+            <id>javafx-linux</id>
+            <activation>
+                <os>
+                    <family>unix</family>
+                    <name>Linux</name>
+                </os>
+            </activation>
+            <properties>
+                <javafx.classifier>linux</javafx.classifier>
+            </properties>
+        </profile>
+        <profile>
+            <id>javafx-mac</id>
+            <activation>
+                <os>
+                    <family>mac</family>
+                </os>
+            </activation>
+            <properties>
+                <javafx.classifier>mac</javafx.classifier>
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <resources>
+            <!-- 将源码目录下的 README（*.md）复制到 classpath，供运行时读取
+                 Copy README (*.md) under the source tree onto the classpath -->
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.md</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+    </build>
 </project>

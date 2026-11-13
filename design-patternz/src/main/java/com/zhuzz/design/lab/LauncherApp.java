@@ -31,6 +31,8 @@ public class LauncherApp extends JFrame {
     private JButton runBtn;
     private JButton clearBtn;
     private JLabel outputLabel;
+    private JLabel readmeLabel;
+    private ReadmeView readmeView;
     private JLabel titleLabel;
     // 重建语言下拉框时抑制事件，避免触发语言切换监听器造成重复刷新
     // Guard flag: suppress combo events while rebuilding the language selector
@@ -89,21 +91,45 @@ public class LauncherApp extends JFrame {
         tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         tree.addTreeSelectionListener(e -> {
             DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
-            runBtn.setEnabled(node != null && leafRunners.containsKey(node));
+            boolean isLeaf = node != null && leafRunners.containsKey(node);
+            runBtn.setEnabled(isLeaf);
+            if (isLeaf) {
+                showReadme((DemoCase) node.getUserObject());
+            }
         });
         JScrollPane treeScroll = new JScrollPane(tree);
         treeScroll.setPreferredSize(new Dimension(240, 0));
         leftPanel.add(treeScroll, BorderLayout.CENTER);
 
         JPanel rightPanel = new JPanel(new BorderLayout());
+
+        // README 展示区（上），渲染 Markdown 为 HTML
+        // README display area (top), Markdown rendered as HTML
+        JPanel readmePanel = new JPanel(new BorderLayout());
+        readmeLabel = new JLabel("=== " + I18n.get(TAB_README) + " ===");
+        readmeLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 4, 0));
+        readmePanel.add(readmeLabel, BorderLayout.NORTH);
+        // 用 JavaFX WebView 承载 README，以便 mermaid.js 渲染出真正的图表
+        // Host README in a JavaFX WebView so mermaid.js can render real diagrams
+        readmeView = new ReadmeView();
+        readmePanel.add(readmeView, BorderLayout.CENTER);
+
+        // 输出展示区（下）
+        // Output display area (bottom)
+        JPanel outputPanel = new JPanel(new BorderLayout());
         outputLabel = new JLabel("=== " + I18n.get(OUTPUT_TITLE) + " ===");
         outputLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 4, 0));
-        rightPanel.add(outputLabel, BorderLayout.NORTH);
+        outputPanel.add(outputLabel, BorderLayout.NORTH);
 
         outputArea = new JTextArea();
         outputArea.setEditable(false);
         outputArea.setFont(new Font("Monospaced", Font.PLAIN, 13));
-        rightPanel.add(new JScrollPane(outputArea), BorderLayout.CENTER);
+        outputPanel.add(new JScrollPane(outputArea), BorderLayout.CENTER);
+
+        JSplitPane verticalSplit = new JSplitPane(JSplitPane.VERTICAL_SPLIT, readmePanel, outputPanel);
+        verticalSplit.setResizeWeight(0.6);
+        verticalSplit.setDividerLocation(360);
+        rightPanel.add(verticalSplit, BorderLayout.CENTER);
 
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftPanel, rightPanel);
         splitPane.setDividerLocation(260);
@@ -144,6 +170,13 @@ public class LauncherApp extends JFrame {
                 statusBar.setText(statusCountText());
             });
         }).start();
+    }
+
+    // 渲染并展示当前案例的 README；缺失时清空
+    // Render and display the selected case's README; clears when absent
+    private void showReadme(DemoCase demo) {
+        String html = ReadmeRenderer.render(demo, I18n.getCurrentLocale());
+        readmeView.showHtml(html);
     }
 
     private String statusCountText() {
@@ -229,9 +262,17 @@ public class LauncherApp extends JFrame {
         titleLabel.setText("🧩 " + I18n.get(WINDOW_TITLE));
         runBtn.setText(I18n.get(BTN_RUN));
         clearBtn.setText(I18n.get(BTN_CLEAR));
+        readmeLabel.setText("=== " + I18n.get(TAB_README) + " ===");
         outputLabel.setText("=== " + I18n.get(OUTPUT_TITLE) + " ===");
         statusBar.setText(statusCountText());
         rebuildTree();
+
+        // 语言切换后刷新当前选中案例的 README
+        // Refresh the README for the currently selected case after a language switch
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+        if (node != null && leafRunners.containsKey(node)) {
+            showReadme((DemoCase) node.getUserObject());
+        }
     }
 
     private static class I18nRenderer extends DefaultTreeCellRenderer {
