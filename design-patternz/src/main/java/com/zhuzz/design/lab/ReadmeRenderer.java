@@ -35,6 +35,12 @@ public final class ReadmeRenderer {
     // Bundled Mermaid script: on the classpath, renders diagrams offline
     private static final String MERMAID_JS = loadResource("/mermaid/mermaid.min.js");
 
+    // 页面骨架、样式与初始化脚本以独立 html/css/js 文件承载，Java 仅负责加载与拼装
+    // Page skeleton, styles and init script live in standalone html/css/js files; Java only loads & assembles
+    private static final String TEMPLATE = loadResource("/readme/template.html");
+    private static final String CSS = loadResource("/readme/readme.css");
+    private static final String INIT_JS = loadResource("/readme/mermaid-init.js");
+
     private ReadmeRenderer() {
     }
 
@@ -114,34 +120,10 @@ public final class ReadmeRenderer {
     }
 
     private static String wrapHtml(String body) {
-        return "<html><head><meta charset=\"UTF-8\"><style>"
-                + CSS
-                + "</style></head><body>"
-                + body
-                + "<script>" + MERMAID_JS + "</script>"
-                + "<script>mermaid.initialize({ startOnLoad: true, theme: 'default' });</script>"
-                + "</body></html>";
+        return TEMPLATE
+                .replace("{{CSS}}", CSS)
+                .replace("{{CONTENT}}", body)
+                .replace("{{MERMAID_JS}}", MERMAID_JS)
+                .replace("{{INIT_JS}}", INIT_JS);
     }
-
-    // GitHub 风格的排版，使 README 展示效果与 GitHub 尽量一致
-    // GitHub-like typography so the README looks close to GitHub
-    private static final String CSS =
-            "body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; "
-                    + "font-size: 15px; line-height: 1.6; color: #1f2328; padding: 16px 24px; }"
-                    + "h1, h2, h3, h4 { font-weight: 600; line-height: 1.25; margin: 24px 0 16px; }"
-                    + "h1 { font-size: 2em; padding-bottom: .3em; border-bottom: 1px solid #d0d7de; }"
-                    + "h2 { font-size: 1.5em; padding-bottom: .3em; border-bottom: 1px solid #d0d7de; }"
-                    + "h3 { font-size: 1.25em; }"
-                    + "code { font-family: 'Consolas', 'Menlo', monospace; font-size: 85%; background: #eff1f3; "
-                    + "padding: 2px 4px; border-radius: 4px; }"
-                    + "pre { background: #f6f8fa; padding: 12px 16px; overflow: auto; border-radius: 6px; }"
-                    + "pre code { background: transparent; padding: 0; }"
-                    + "table { border-collapse: collapse; margin: 16px 0; }"
-                    + "th, td { border: 1px solid #d0d7de; padding: 6px 12px; }"
-                    + "th { background: #f6f8fa; }"
-                    + "blockquote { border-left: 4px solid #d0d7de; margin: 16px 0; padding: 0 1em; color: #57606a; }"
-                    + "img { max-width: 100%; }"
-                    + "a { color: #0969da; text-decoration: none; }"
-                    + "ul, ol { padding-left: 2em; }"
-                    + ".mermaid { margin: 16px 0; text-align: center; }";
 }
