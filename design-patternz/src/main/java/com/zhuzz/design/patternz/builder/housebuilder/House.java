@@ -1,6 +1,9 @@
 package com.zhuzz.design.patternz.builder.housebuilder;
 
-/** 产品：房屋，由基础、结构、屋顶和装修构成 | Product: house */
+/**
+ * 产品：房屋，由基础、结构、屋顶和装修构成
+ * Product: house
+ */
 public class House {
     private String foundation;
     private String structure;

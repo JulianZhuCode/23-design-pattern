@@ -1,6 +1,9 @@
 package com.zhuzz.design.patternz.abstractfactory.officesuite;
 
-/** Windows 具体工厂：产出整套 Windows 办公套件 | Concrete factory: Windows suite */
+/**
+ * Windows 具体工厂：产出整套 Windows 办公套件
+ * Concrete factory: Windows suite
+ */
 public class WindowsFactory implements OfficeSuiteFactory {
     @Override
     public WordProcessor createWordProcessor() {

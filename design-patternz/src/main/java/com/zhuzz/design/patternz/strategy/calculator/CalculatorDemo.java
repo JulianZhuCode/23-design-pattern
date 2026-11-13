@@ -8,7 +8,10 @@ import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
-/** 策略模式演示：可切换运算策略的计算器 | Strategy demo: calculator with switchable ops */
+/**
+ * 策略模式演示：可切换运算策略的计算器
+ * Strategy demo: calculator with switchable ops
+ */
 public class CalculatorDemo implements DemoCase {
     @Override public I18nMessages pattern() { return PAT_STRATEGY; }
     @Override public Map<Locale, String> caseNames() {

@@ -1,6 +1,9 @@
 package com.zhuzz.design.patternz.strategy.calculator;
 
-/** 上下文：持有一个运算策略，可动态切换并执行运算 | Context: holds and switches strategy */
+/**
+ * 上下文：持有一个运算策略，可动态切换并执行运算
+ * Context: holds and switches strategy
+ */
 public class Calculator {
     private MathOperation operation;
 

@@ -8,7 +8,10 @@ import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
-/** 访问者模式演示：计算图形总面积 | Visitor demo: computes total shape area */
+/**
+ * 访问者模式演示：计算图形总面积
+ * Visitor demo: computes total shape area
+ */
 public class AreaCalculatorDemo implements DemoCase {
     @Override public I18nMessages pattern() { return PAT_VISITOR; }
     @Override public Map<Locale, String> caseNames() {

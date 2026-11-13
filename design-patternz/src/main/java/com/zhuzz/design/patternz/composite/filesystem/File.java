@@ -1,6 +1,9 @@
 package com.zhuzz.design.patternz.composite.filesystem;
 
-/** 叶子节点：文件 | Leaf: file */
+/**
+ * 叶子节点：文件
+ * Leaf: file
+ */
 public class File implements FileSystemComponent {
     private String name;
 

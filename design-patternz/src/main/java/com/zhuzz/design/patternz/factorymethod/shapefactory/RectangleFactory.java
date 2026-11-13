@@ -1,6 +1,9 @@
 package com.zhuzz.design.patternz.factorymethod.shapefactory;
 
-/** 具体工厂：创建矩形 | Concrete factory: creates rectangles */
+/**
+ * 具体工厂：创建矩形
+ * Concrete factory: creates rectangles
+ */
 public class RectangleFactory extends ShapeFactory {
     @Override
     public Shape createShape() {

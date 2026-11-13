@@ -1,6 +1,9 @@
 package com.zhuzz.design.patternz.memento.texteditor;
 
-/** 发起者：保存当前状态到备忘录，或从备忘录恢复状态 | Originator: saves/restores state via memento */
+/**
+ * 发起者：保存当前状态到备忘录，或从备忘录恢复状态
+ * Originator: saves/restores state via memento
+ */
 public class Originator {
     private String state;
 

@@ -18,7 +18,10 @@ import java.util.List;
  */
 public class DemoRegistry {
 
-    /** 案例根包：类放在该包（或子包）下即被自动发现 | Root package for auto-discovery */
+    /**
+     * 案例根包：类放在该包（或子包）下即被自动发现
+     * Root package for auto-discovery
+     */
     private static final String BASE_PACKAGE = "com.zhuzz.design.patternz";
 
     public static final LinkedHashMap<I18nMessages, LinkedHashMap<I18nMessages, List<DemoCase>>> registry = new LinkedHashMap<>();

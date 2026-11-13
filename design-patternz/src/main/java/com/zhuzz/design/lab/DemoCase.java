@@ -15,17 +15,26 @@ public interface DemoCase {
 
     I18nMessages pattern();
 
-    /** 所属分类，由 pattern() 推导 | Category derived from pattern() */
+    /**
+     * 所属分类，由 pattern() 推导
+     * Category derived from pattern()
+     */
     default I18nMessages category() {
         return pattern().category();
     }
 
-    /** 显示名多语言映射：key 为语言，value 为显示值 | Localized display names */
+    /**
+     * 显示名多语言映射：key 为语言，value 为显示值
+     * Localized display names
+     */
     Map<Locale, String> caseNames();
 
     void run();
 
-    /** 按语言取显示名，回退链：指定语言 → 英文 → 类名 | Resolve name with fallback */
+    /**
+     * 按语言取显示名，回退链：指定语言 → 英文 → 类名
+     * Resolve name with fallback
+     */
     default String caseName(Locale locale) {
         return caseNames().getOrDefault(locale,
                 caseNames().getOrDefault(Locale.ENGLISH, getClass().getSimpleName()));

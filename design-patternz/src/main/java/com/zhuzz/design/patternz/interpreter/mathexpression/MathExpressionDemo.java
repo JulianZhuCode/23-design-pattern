@@ -8,7 +8,10 @@ import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
-/** 解释器模式演示：解析并计算表达式 | Interpreter demo: parse and evaluate */
+/**
+ * 解释器模式演示：解析并计算表达式
+ * Interpreter demo: parse and evaluate
+ */
 public class MathExpressionDemo implements DemoCase {
     @Override public I18nMessages pattern() { return PAT_INTERPRETER; }
     @Override public Map<Locale, String> caseNames() {

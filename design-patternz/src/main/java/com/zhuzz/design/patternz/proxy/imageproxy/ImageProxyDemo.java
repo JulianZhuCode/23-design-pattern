@@ -8,7 +8,10 @@ import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
-/** 代理模式演示：延迟加载图片 | Proxy demo: lazy image loading */
+/**
+ * 代理模式演示：延迟加载图片
+ * Proxy demo: lazy image loading
+ */
 public class ImageProxyDemo implements DemoCase {
     @Override public I18nMessages pattern() { return PAT_PROXY; }
     @Override public Map<Locale, String> caseNames() {

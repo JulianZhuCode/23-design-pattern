@@ -8,7 +8,10 @@ import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
-/** 备忘录模式演示：文本编辑器的撤销/重做 | Memento demo: text editor undo/redo */
+/**
+ * 备忘录模式演示：文本编辑器的撤销/重做
+ * Memento demo: text editor undo/redo
+ */
 public class TextEditorDemo implements DemoCase {
     @Override public I18nMessages pattern() { return PAT_MEMENTO; }
     @Override public Map<Locale, String> caseNames() {

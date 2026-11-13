@@ -1,6 +1,9 @@
 package com.zhuzz.design.patternz.facade.hometheater;
 
-/** 外观：统一封装观影所需的多个子系统操作 | Facade: wraps subsystem operations for movie watching */
+/**
+ * 外观：统一封装观影所需的多个子系统操作
+ * Facade: wraps subsystem operations for movie watching
+ */
 public class HomeTheaterFacade {
     private StereoSystem stereo;
     private Projector projector;

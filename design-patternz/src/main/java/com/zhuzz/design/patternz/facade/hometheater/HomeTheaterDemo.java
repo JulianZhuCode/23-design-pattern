@@ -8,7 +8,10 @@ import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
-/** 外观模式演示：一键完成观影准备 | Facade demo: one-click movie setup */
+/**
+ * 外观模式演示：一键完成观影准备
+ * Facade demo: one-click movie setup
+ */
 public class HomeTheaterDemo implements DemoCase {
     @Override public I18nMessages pattern() { return PAT_FACADE; }
     @Override public Map<Locale, String> caseNames() {

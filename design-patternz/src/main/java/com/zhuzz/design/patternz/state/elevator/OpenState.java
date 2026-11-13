@@ -1,6 +1,9 @@
 package com.zhuzz.design.patternz.state.elevator;
 
-/** 具体状态：开门 | Concrete state: doors open */
+/**
+ * 具体状态：开门
+ * Concrete state: doors open
+ */
 public class OpenState implements ElevatorState {
     private final Elevator elevator;
 

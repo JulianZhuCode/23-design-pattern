@@ -8,7 +8,10 @@ import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
-/** 享元模式演示：共享颜色相同的圆形实例 | Flyweight demo: share circles of the same color */
+/**
+ * 享元模式演示：共享颜色相同的圆形实例
+ * Flyweight demo: share circles of the same color
+ */
 public class CirclePoolDemo implements DemoCase {
     @Override public I18nMessages pattern() { return PAT_FLYWEIGHT; }
     @Override public Map<Locale, String> caseNames() {

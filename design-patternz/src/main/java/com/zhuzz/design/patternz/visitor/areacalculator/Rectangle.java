@@ -1,6 +1,9 @@
 package com.zhuzz.design.patternz.visitor.areacalculator;
 
-/** 具体元素：矩形 | Concrete element: rectangle */
+/**
+ * 具体元素：矩形
+ * Concrete element: rectangle
+ */
 public class Rectangle implements Shape {
     private double width;
     private double height;

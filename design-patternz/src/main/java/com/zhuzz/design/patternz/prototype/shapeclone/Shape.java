@@ -1,6 +1,9 @@
 package com.zhuzz.design.patternz.prototype.shapeclone;
 
-/** 原型：实现 Cloneable 以支持克隆 | Prototype: Cloneable for cloning */
+/**
+ * 原型：实现 Cloneable 以支持克隆
+ * Prototype: Cloneable for cloning
+ */
 public class Shape implements Cloneable {
     private String type;
 

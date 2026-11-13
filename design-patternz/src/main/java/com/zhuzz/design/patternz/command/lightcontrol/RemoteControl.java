@@ -1,6 +1,9 @@
 package com.zhuzz.design.patternz.command.lightcontrol;
 
-/** 调用者：遥控器，持有命令并触发执行 / 撤销 | Invoker: remote holding a command */
+/**
+ * 调用者：遥控器，持有命令并触发执行 / 撤销
+ * Invoker: remote holding a command
+ */
 public class RemoteControl {
     private Command command;
 

@@ -1,6 +1,9 @@
 package com.zhuzz.design.patternz.templatemethod.dataprocessor;
 
-/** 具体类：JSON 数据处理流程 | Concrete class: JSON data processing */
+/**
+ * 具体类：JSON 数据处理流程
+ * Concrete class: JSON data processing
+ */
 public class JsonDataProcessor extends DataProcessor {
 
     @Override

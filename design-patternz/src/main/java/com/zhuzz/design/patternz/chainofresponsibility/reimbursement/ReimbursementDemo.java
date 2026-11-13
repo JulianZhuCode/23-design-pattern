@@ -8,7 +8,10 @@ import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
-/** 责任链模式演示：报销按金额分级审批 | Chain of Responsibility demo: tiered approval by amount */
+/**
+ * 责任链模式演示：报销按金额分级审批
+ * Chain of Responsibility demo: tiered approval by amount
+ */
 public class ReimbursementDemo implements DemoCase {
     @Override public I18nMessages pattern() { return PAT_CHAIN_OF_RESPONSIBILITY; }
     @Override public Map<Locale, String> caseNames() {

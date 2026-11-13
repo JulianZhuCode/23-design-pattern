@@ -8,7 +8,10 @@ import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
-/** 中介者模式演示：用户通过聊天室互相发消息 | Mediator demo: users chat via a room */
+/**
+ * 中介者模式演示：用户通过聊天室互相发消息
+ * Mediator demo: users chat via a room
+ */
 public class ChatRoomDemo implements DemoCase {
     @Override public I18nMessages pattern() { return PAT_MEDIATOR; }
     @Override public Map<Locale, String> caseNames() {

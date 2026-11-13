@@ -1,6 +1,9 @@
 package com.zhuzz.design.patternz.abstractfactory.officesuite;
 
-/** Linux 产品：LibreOffice Writer | Linux product: Writer */
+/**
+ * Linux 产品：LibreOffice Writer
+ * Linux product: Writer
+ */
 public class LibreWriter implements WordProcessor {
     @Override
     public void editDocument() {

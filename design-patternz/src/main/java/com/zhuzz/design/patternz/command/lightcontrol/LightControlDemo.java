@@ -8,7 +8,10 @@ import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
-/** 命令模式演示：遥控器开灯/关灯 | Command demo: remote light on/off */
+/**
+ * 命令模式演示：遥控器开灯/关灯
+ * Command demo: remote light on/off
+ */
 public class LightControlDemo implements DemoCase {
     @Override public I18nMessages pattern() { return PAT_COMMAND; }
     @Override public Map<Locale, String> caseNames() {

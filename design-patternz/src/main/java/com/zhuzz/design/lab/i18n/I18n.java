@@ -10,7 +10,10 @@ public class I18n {
 
     private static final List<I18nProvider> providers = new ArrayList<>();
     private static final List<Runnable> listeners = new ArrayList<>();
-    /** 回退语言索引，固定为英文（注册在首位） | Fallback locale index (English first) */
+    /**
+     * 回退语言索引，固定为英文（注册在首位）
+     * Fallback locale index (English first)
+     */
     private static final int FALLBACK_INDEX = 0;
     private static int currentIndex = FALLBACK_INDEX;
 
@@ -23,7 +26,10 @@ public class I18n {
         applySystemLanguage();
     }
 
-    /** 按系统 locale 选默认语言：精确匹配 → 语言匹配 → 英文 | Auto-select locale by system */
+    /**
+     * 按系统 locale 选默认语言：精确匹配 → 语言匹配 → 英文
+     * Auto-select locale by system
+     */
     private static void applySystemLanguage() {
         Locale system = Locale.getDefault();
         for (int i = 0; i < providers.size(); i++) {

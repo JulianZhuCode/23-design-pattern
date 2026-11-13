@@ -8,7 +8,10 @@ import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
-/** 模板方法模式演示：复用同一处理骨架 | Template Method demo: reuse one skeleton */
+/**
+ * 模板方法模式演示：复用同一处理骨架
+ * Template Method demo: reuse one skeleton
+ */
 public class DataProcessorDemo implements DemoCase {
     @Override public I18nMessages pattern() { return PAT_TEMPLATE_METHOD; }
     @Override public Map<Locale, String> caseNames() {
