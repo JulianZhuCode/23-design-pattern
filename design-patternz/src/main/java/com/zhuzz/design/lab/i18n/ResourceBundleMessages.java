@@ -24,7 +24,8 @@ public class ResourceBundleMessages implements I18nProvider {
 
     @Override
     public String getLanguageName() {
-        // 每种语言 properties 必须含 LANGUAGE_NAME 键 | Every bundle must define LANGUAGE_NAME
+        // 每种语言 properties 必须含 LANGUAGE_NAME 键
+        // Every bundle must define LANGUAGE_NAME
         return bundle.getString(I18nMessages.LANGUAGE_NAME.name());
     }
 

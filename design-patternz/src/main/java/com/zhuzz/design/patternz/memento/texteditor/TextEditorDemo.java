@@ -21,18 +21,22 @@ public class TextEditorDemo implements DemoCase {
         Originator originator = new Originator();
         Caretaker caretaker = new Caretaker();
 
-        // 设置初始状态 | set initial state
+        // 设置初始状态
+        // set initial state
         originator.setState("State 1");
         System.out.println("Current State: " + originator.getState());
 
-        // 创建备忘录并保存状态 | create memento and save state
+        // 创建备忘录并保存状态
+        // create memento and save state
         caretaker.setMemento(originator.createMemento());
 
-        // 修改状态 | change state
+        // 修改状态
+        // change state
         originator.setState("State 2");
         System.out.println("Updated State: " + originator.getState());
 
-        // 恢复之前的状态 | restore previous state
+        // 恢复之前的状态
+        // restore previous state
         originator.restoreMemento(caretaker.getMemento());
         System.out.println("Restored State: " + originator.getState());
     }

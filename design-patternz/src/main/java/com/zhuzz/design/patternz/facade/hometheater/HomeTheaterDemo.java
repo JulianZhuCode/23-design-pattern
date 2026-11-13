@@ -20,10 +20,12 @@ public class HomeTheaterDemo implements DemoCase {
     @Override public void run() {
         HomeTheaterFacade homeTheater = new HomeTheaterFacade();
 
-        // 准备观影 | prepare to watch
+        // 准备观影
+        // prepare to watch
         homeTheater.watchMovie();
 
-        // 结束观影 | finish watching
+        // 结束观影
+        // finish watching
         homeTheater.endMovie();
     }
 }

@@ -16,11 +16,23 @@ public class ElevatorDemo implements DemoCase {
     @Override public void run() {
         Elevator elevator = new Elevator();
 
-        elevator.openDoors(); // 开门：已处于开门状态 | open: already open
-        elevator.move();      // 开门时无法移动 | cannot move while open
-        elevator.closeDoors(); // 关门 | close doors
-        elevator.move();       // 移动 | move
-        elevator.stop();       // 停止 | stop
-        elevator.openDoors();  // 开门 | open doors
+        // 开门：已处于开门状态
+        // open: already open
+        elevator.openDoors();
+        // 开门时无法移动
+        // cannot move while open
+        elevator.move();
+        // 关门
+        // close doors
+        elevator.closeDoors();
+        // 移动
+        // move
+        elevator.move();
+        // 停止
+        // stop
+        elevator.stop();
+        // 开门
+        // open doors
+        elevator.openDoors();
     }
 }

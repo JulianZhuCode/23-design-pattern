@@ -20,10 +20,12 @@ public class ImageProxyDemo implements DemoCase {
     @Override public void run() {
         Image image = new ProxyImage("sample.jpg");
 
-        // 首次 display() 时才真正加载 | lazy load on first display()
+        // 首次 display() 时才真正加载
+        // lazy load on first display()
         image.display();
 
-        // 已加载，不再重复创建 | already loaded, no re-creation
+        // 已加载，不再重复创建
+        // already loaded, no re-creation
         image.display();
     }
 }

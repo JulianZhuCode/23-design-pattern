@@ -26,11 +26,19 @@ public class LightControlDemo implements DemoCase {
         RemoteControl remote = new RemoteControl();
 
         remote.setCommand(livingRoomLightOn);
-        remote.pressButton(); // 开灯 | turn on
-        remote.pressUndoButton(); // 撤销：关灯 | undo: turn off
+        // 开灯
+        // turn on
+        remote.pressButton();
+        // 撤销：关灯
+        // undo: turn off
+        remote.pressUndoButton();
 
         remote.setCommand(livingRoomLightOff);
-        remote.pressButton(); // 关灯 | turn off
-        remote.pressUndoButton(); // 撤销：开灯 | undo: turn on
+        // 关灯
+        // turn off
+        remote.pressButton();
+        // 撤销：开灯
+        // undo: turn on
+        remote.pressUndoButton();
     }
 }

@@ -18,7 +18,8 @@ public class MathExpressionDemo implements DemoCase {
         return Map.of(Locale.ENGLISH, "Math Expression", Locale.SIMPLIFIED_CHINESE, "数学表达式");
     }
     @Override public void run() {
-        // 构建表达式：2 + (3 - 1) | build: 2 + (3 - 1)
+        // 构建表达式：2 + (3 - 1)
+        // build: 2 + (3 - 1)
         Expression expression = new AddExpression(
                 new NumberExpression(2),
                 new SubtractExpression(
@@ -27,8 +28,11 @@ public class MathExpressionDemo implements DemoCase {
                 )
         );
 
-        // 解释并计算 | interpret and compute
+        // 解释并计算
+        // interpret and compute
         int result = expression.interpret();
-        System.out.println("Result: " + result); // 输出 4 | prints 4
+        // 输出 4
+        // prints 4
+        System.out.println("Result: " + result);
     }
 }

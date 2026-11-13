@@ -54,7 +54,8 @@ public class DemoRegistry {
                 if ("file".equals(url.getProtocol())) {
                     scanDir(new File(url.toURI()), packageName, out);
                 }
-                // 打包成 jar 运行时需在此扩展 jar 协议 | Extend here for jar protocol if needed
+                // 打包成 jar 运行时需在此扩展 jar 协议
+                // Extend here for jar protocol if needed
             }
         } catch (Exception e) {
             throw new IllegalStateException("扫描案例包失败: " + packageName, e);
@@ -83,7 +84,8 @@ public class DemoRegistry {
                 out.add((DemoCase) type.getDeclaredConstructor().newInstance());
             }
         } catch (Exception | LinkageError ignored) {
-            // 跳过无法加载/实例化的类，避免影响整体发现 | Skip classes that cannot be instantiated
+            // 跳过无法加载/实例化的类，避免影响整体发现
+            // Skip classes that cannot be instantiated
         }
     }
 

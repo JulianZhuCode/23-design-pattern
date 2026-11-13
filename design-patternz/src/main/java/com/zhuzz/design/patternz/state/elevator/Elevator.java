@@ -8,7 +8,9 @@ public class Elevator {
     private ElevatorState state;
 
     public Elevator() {
-        state = new CloseState(this); // 初始状态：关门 | initial: doors closed
+        // 初始状态：关门
+        // initial: doors closed
+        state = new CloseState(this);
     }
 
     public void setState(ElevatorState state) {
