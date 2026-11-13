@@ -1,19 +1,28 @@
 # AGENTS.md
 
-Java 设计模式学习项目（GoF 23 种设计模式），代码位于 `design-patternz/` 目录。
+Java 设计模式学习项目（GoF 23 种设计模式）。本文件是项目规范与约束的唯一来源，迭代中出现的新规范、新约束统一记录于此。
+
+## 项目概览
+
+- 技术栈：Java 21、Maven；无第三方依赖、无单元测试。
+- 代码目录：`design-patternz/`（Maven 项目根）。
+- 程序入口：`com.zhuzz.design.lab.LauncherApp`（Swing GUI）。
+- 构建方式：Maven Wrapper（`mvnw`）。在 `design-patternz/` 下执行 `.\mvnw.cmd compile`；要求 `JAVA_HOME` 指向 JDK 21。
+
+核心机制：
+
+- 框架代码（`DemoCase`、`DemoRegistry`、`LauncherApp`、`I18n` 等）位于 `com.zhuzz.design.lab` 包。
+- 每个设计模式案例是一个实现 `DemoCase` 接口的 `*Demo` 类，放在 `com.zhuzz.design.patternz` 包（或其子包）下。
+- `DemoRegistry` 启动时扫描 `patternz` 包，自动发现全部案例，**无需注册**。
+- `I18nMessages` 枚举 + `messages_en.properties` / `messages_zh.properties` 提供中英文界面文案。
 
 ## 代码注释规范
 
-所有代码注释遵循以下规范，便于学习者对照理解。
+所有注释必须中英双语，中文在前、英文在后，便于学习者对照理解。
 
-### 1. 中英文双语
+### Javadoc（类 / 方法级）
 
-- 注释必须同时包含中文与英文。
-- 中文在前，英文在后。
-
-### 2. 类 / 方法级注释（Javadoc）
-
-使用多行 `/** */` 格式，中文一行、英文一行，不使用 HTML 标签（如 `<p>`、`<br>`）：
+多行 `/** */` 格式，中文一行、英文一行，禁止 HTML 标签：
 
 ```java
 /**
@@ -22,9 +31,9 @@ Java 设计模式学习项目（GoF 23 种设计模式），代码位于 `design
  */
 ```
 
-### 3. 行内注释（`//`）
+### 行内注释（`//`）
 
-使用多行格式（中文一行、英文一行），置于被注释代码的上方，不写在代码行尾：
+多行格式（中文一行、英文一行），放在被注释代码的**上方**，禁止写在行尾：
 
 ```java
 // 开门：已处于开门状态
@@ -32,26 +41,24 @@ Java 设计模式学习项目（GoF 23 种设计模式），代码位于 `design
 elevator.openDoors();
 ```
 
-### 4. 精简原则
+### 精简原则
 
-- 注释应简洁，方便理解即可，避免长篇大论。
-- 只添加必要的注释，删除无意义的冗余注释。
+- 注释简洁，只保留必要注释，删除冗余注释。
 
 ## 示例实现规范
 
-每个设计模式案例放在独立子包，通过扫描案例根包自动发现，无需注册文件。
+### 包结构
 
-### 1. 包结构
-
-- 案例根包：`com.zhuzz.design.patternz`，该包及其子包下的 `DemoCase` 实现会被自动发现。
+- 案例根包：`com.zhuzz.design.patternz`（此包及其子包会被自动扫描）。
 - 每个案例一个子包：`com.zhuzz.design.patternz.<模式名>/<案例名>/`，例如 `command.lightcontrol`。
 
-### 2. 演示类（`*Demo`）
+### 演示类（`*Demo`）
 
 - 类名以 `Demo` 结尾，实现 `DemoCase` 接口。
-- `pattern()` 返回 `I18nMessages` 中对应的 `PAT_*` 常量。
+- 类必须 public、非抽象、非接口，有 public 无参构造，且为顶层类（内部类不被扫描）。
+- `pattern()` 返回 `I18nMessages` 中的 `PAT_*` 常量。
 - `caseNames()` 返回中英文显示名映射。
-- `run()` 编写演示逻辑，用 `System.out` 输出，由界面捕获展示。
+- `run()` 编写演示逻辑，用 `System.out` 输出（由 GUI 捕获展示）。
 
 ```java
 public class LightControlDemo implements DemoCase {
@@ -65,13 +72,26 @@ public class LightControlDemo implements DemoCase {
 }
 ```
 
-### 3. 文件组织
+### 文件组织
 
-- 一个类型一个文件，模式相关类与演示类放在同一子包。
+- 一个类型一个文件；模式相关类与演示类放在同一子包。
 - 每个案例子包附带 `README.md`（英文）与 `README_zh.md`（中文），统一包含：整体概览、场景描述、设计模式、结构、设计理念。
 
-### 4. 新增模式
+### 场景设计
 
-- 在 `I18nMessages` 中新增 `PAT_*` 常量并指定所属分类（创建型/结构型/行为型）。
-- `PAT_*` 常量按 GoF 经典顺序声明，声明顺序决定界面展示顺序。
-- 在 `messages_en.properties`、`messages_zh.properties` 中补充对应翻译。
+- 示例应结合真实世界中常见或好理解的场景（如灯光控制、电梯、文件系统等），便于学习者快速理解模式用途。
+
+## 新增案例 / 模式
+
+在现有模式下新增案例：
+
+1. 新建子包 `com.zhuzz.design.patternz.<模式名>/<案例名>/`。
+2. 编写模式相关类（一个类型一个文件）。
+3. 编写 `<案例名>Demo` 类，实现 `DemoCase`（满足自动发现约束）。
+4. 添加 `README.md` 与 `README_zh.md`。
+5. 在 `design-patternz/` 下执行 `.\mvnw.cmd compile` 验证。
+
+新增全新模式（额外步骤）：
+
+1. 在 `I18nMessages` 中新增 `PAT_*` 常量并指定分类（创建型/结构型/行为型），按 GoF 经典顺序声明（声明顺序决定界面展示顺序）。
+2. 在 `messages_en.properties`、`messages_zh.properties` 补充对应翻译。
