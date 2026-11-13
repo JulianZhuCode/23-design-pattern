@@ -1,4 +1,4 @@
-package com.zhuzz.design.lab;
+package com.zhuzz.design.lab.ui;
 
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
