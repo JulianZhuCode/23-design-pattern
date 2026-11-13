@@ -24,6 +24,10 @@ public class DemoRegistry {
      */
     private static final String BASE_PACKAGE = "com.zhuzz.design.patternz";
 
+    /**
+     * 案例注册表结构：分类 → (模式 → 案例列表)。
+     * Registry structure: category → (pattern → list of cases).
+     */
     public static final LinkedHashMap<I18nMessages, LinkedHashMap<I18nMessages, List<DemoCase>>> registry = new LinkedHashMap<>();
 
     static {
@@ -69,6 +73,8 @@ public class DemoRegistry {
             if (file.isDirectory()) {
                 scanDir(file, packageName + "." + file.getName(), out);
             } else if (file.getName().endsWith(".class") && !file.getName().contains("$")) {
+                // 仅处理 .class，并跳过内部类（名称含 $），内部类不可能实现 DemoCase
+                // Only .class files; skip inner classes (names containing $), which cannot be DemoCase
                 String className = packageName + "." + file.getName().substring(0, file.getName().length() - 6);
                 registerIfDemo(className, out);
             }
@@ -81,6 +87,8 @@ public class DemoRegistry {
             if (DemoCase.class.isAssignableFrom(type)
                     && !type.isInterface()
                     && !Modifier.isAbstract(type.getModifiers())) {
+                // 通过公开无参构造实例化，DemoCase 实现类必须保留无参构造
+                // Instantiate via the public no-arg constructor (required for DemoCase implementations)
                 out.add((DemoCase) type.getDeclaredConstructor().newInstance());
             }
         } catch (Exception | LinkageError ignored) {

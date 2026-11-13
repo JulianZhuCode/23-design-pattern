@@ -1,5 +1,12 @@
 package com.zhuzz.design.lab.i18n;
 
+/**
+ * 统一管理三类信息的枚举：
+ * 1) UI 文案 key（LANGUAGE_NAME、BTN_RUN 等）；
+ * 2) 模式分类（CAT_*）；
+ * 3) 模式 → 分类的归属关系（PAT_*(CAT_*)）。
+ * Single enum holding UI message keys, categories (CAT_*), and pattern-to-category mapping.
+ */
 public enum I18nMessages {
 
     LANGUAGE_NAME,
@@ -54,6 +61,10 @@ public enum I18nMessages {
         this.category = category;
     }
 
+    /**
+     * 所属分类：仅 PAT_* 常量有效，其余返回 null，调用方需判空。
+     * Category for PAT_* constants only; returns null for others — callers must null-check.
+     */
     public I18nMessages category() {
         return category;
     }

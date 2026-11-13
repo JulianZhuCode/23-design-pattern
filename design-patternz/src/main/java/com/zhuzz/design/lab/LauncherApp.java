@@ -16,6 +16,12 @@ import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
+/**
+ * Swing 图形界面入口：以树形展示所有案例（分类 → 模式 → 案例），
+ * 后台线程运行案例并捕获输出，同时联动 i18n 语言切换。
+ * Swing GUI entry: tree of cases (category → pattern → case),
+ * runs cases on a background thread and reacts to language switches.
+ */
 public class LauncherApp extends JFrame {
 
     private JTree tree;
@@ -26,8 +32,12 @@ public class LauncherApp extends JFrame {
     private JButton clearBtn;
     private JLabel outputLabel;
     private JLabel titleLabel;
+    // 重建语言下拉框时抑制事件，避免触发语言切换监听器造成重复刷新
+    // Guard flag: suppress combo events while rebuilding the language selector
     private boolean suppressingLangEvent;
 
+    // 叶节点（案例）到运行动作的映射；运行按钮据此判断选中节点是否可运行
+    // Maps leaf nodes (cases) to their run actions
     private final Map<DefaultMutableTreeNode, Runnable> leafRunners = new HashMap<>();
 
     public LauncherApp() {
@@ -116,6 +126,8 @@ public class LauncherApp extends JFrame {
         runBtn.setEnabled(false);
         statusBar.setText(" " + I18n.get(STATUS_READY));
 
+        // 在后台线程运行案例，UI 更新切回 EDT（Swing 事件分发线程）
+        // Run on a background thread; UI updates are marshalled back to the EDT
         new Thread(() -> {
             String output;
             try {
@@ -167,6 +179,8 @@ public class LauncherApp extends JFrame {
         restoreSelectedPath(selectedPath);
     }
 
+    // 记录当前选中案例的路径，用于语言切换重建树后恢复选中
+    // Records the selected case path so it can be restored after a rebuild
     private String saveSelectedPath() {
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
         if (node == null) return null;
@@ -190,6 +204,8 @@ public class LauncherApp extends JFrame {
         return sb.toString();
     }
 
+    // 按路径恢复之前选中的案例节点
+    // Restores the previously selected case node by path
     private void restoreSelectedPath(String path) {
         if (path == null) return;
         for (var entry : leafRunners.entrySet()) {
