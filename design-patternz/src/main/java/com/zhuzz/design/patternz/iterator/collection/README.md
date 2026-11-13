@@ -7,8 +7,8 @@
 
 ```mermaid
 flowchart LR
-    C[Collection] -->|createIterator()| I[Iterator]
-    I -->|hasNext / next| C
+    C[Collection] -->|"createIterator()"| I[Iterator]
+    I -->|"hasNext / next"| C
     Client[Client] --> I
 ```
 

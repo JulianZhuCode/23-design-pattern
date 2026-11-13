@@ -7,7 +7,7 @@
 
 ```mermaid
 flowchart LR
-    C[Client] -->|getCircle(color)| F[ShapeFactory]
+    C[Client] -->|"getCircle(color)"| F[ShapeFactory]
     F -->|caches| Pool[(Pool of Circles)]
     Pool -->|shared| Circle[Circle per color]
 ```

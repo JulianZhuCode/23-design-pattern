@@ -6,8 +6,8 @@
 
 ```mermaid
 flowchart LR
-    C[集合] -->|createIterator()| I[迭代器]
-    I -->|hasNext / next| C
+    C[集合] -->|"createIterator()"| I[迭代器]
+    I -->|"hasNext / next"| C
     Client[客户端] --> I
 ```
 

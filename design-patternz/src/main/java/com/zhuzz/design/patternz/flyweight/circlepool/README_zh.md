@@ -6,7 +6,7 @@
 
 ```mermaid
 flowchart LR
-    C[客户端] -->|getCircle(color)| F[ShapeFactory]
+    C[客户端] -->|"getCircle(color)"| F[ShapeFactory]
     F -->|缓存| Pool[(圆形对象池)]
     Pool -->|共享| Circle[每种颜色一个 Circle]
 ```
