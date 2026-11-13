@@ -78,9 +78,7 @@ public class LauncherApp extends JFrame {
 
         JPanel btnPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 6, 4));
         runBtn = new JButton(I18n.get(BTN_RUN));
-        clearBtn = new JButton(I18n.get(BTN_CLEAR));
         btnPanel.add(runBtn);
-        btnPanel.add(clearBtn);
         leftPanel.add(btnPanel, BorderLayout.NORTH);
 
         DefaultMutableTreeNode placeholder = new DefaultMutableTreeNode();
@@ -118,8 +116,14 @@ public class LauncherApp extends JFrame {
         // Output display area (bottom)
         JPanel outputPanel = new JPanel(new BorderLayout());
         outputLabel = new JLabel("=== " + I18n.get(OUTPUT_TITLE) + " ===");
-        outputLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 4, 0));
-        outputPanel.add(outputLabel, BorderLayout.NORTH);
+        // 清空按钮放到输出标题栏右侧，紧邻它作用的输出窗口
+        // Clear button sits beside the output header, close to the area it affects
+        clearBtn = new JButton(I18n.get(BTN_CLEAR));
+        JPanel outputHeader = new JPanel(new BorderLayout());
+        outputHeader.setBorder(BorderFactory.createEmptyBorder(0, 0, 4, 0));
+        outputHeader.add(outputLabel, BorderLayout.WEST);
+        outputHeader.add(clearBtn, BorderLayout.EAST);
+        outputPanel.add(outputHeader, BorderLayout.NORTH);
 
         outputArea = new JTextArea();
         outputArea.setEditable(false);
