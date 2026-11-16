@@ -17,6 +17,7 @@ public enum I18nMessages {
     TAB_README,
     STATUS_READY,
     STATUS_COUNT,
+    PLAYGROUND_TITLE,
 
     CAT_CREATIONAL,
     CAT_STRUCTURAL,

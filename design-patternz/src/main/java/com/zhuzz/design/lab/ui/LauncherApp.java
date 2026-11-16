@@ -5,6 +5,7 @@ import com.zhuzz.design.lab.DemoRegistry;
 import com.zhuzz.design.lab.OutputCapture;
 import com.zhuzz.design.lab.ReadmeRenderer;
 import com.zhuzz.design.lab.i18n.I18n;
+import com.zhuzz.design.lab.playground.PlaygroundCase;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -22,6 +23,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.BTN_CLEAR;
 import static com.zhuzz.design.lab.i18n.I18nMessages.BTN_RUN;
@@ -48,6 +50,7 @@ public class LauncherApp extends JFrame {
     private JLabel outputLabel;
     private JLabel readmeLabel;
     private ReadmeView readmeView;
+    private PlaygroundPanel playgroundPanel;
     private JLabel titleLabel;
     // 重建语言下拉框时抑制事件，避免触发语言切换监听器造成重复刷新
     // Guard flag: suppress combo events while rebuilding the language selector
@@ -105,22 +108,16 @@ public class LauncherApp extends JFrame {
         return header;
     }
 
-    // 左侧：运行按钮 + 案例树
-    // Left: run button + case tree
+    // 左侧：案例树（纯导航）
+    // Left: case tree (navigation only)
     private JPanel buildLeftPanel() {
         JPanel leftPanel = new JPanel(new BorderLayout());
-
-        JPanel btnPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 6, 4));
-        runBtn = new JButton(I18n.get(BTN_RUN));
-        btnPanel.add(runBtn);
-        leftPanel.add(btnPanel, BorderLayout.NORTH);
-
         leftPanel.add(caseTreePanel, BorderLayout.CENTER);
         return leftPanel;
     }
 
-    // 右侧：README 展示区（上）+ 输出展示区（下）
-    // Right: README display area (top) + output display area (bottom)
+    // 右侧：README 展示区（上）+ 底部（左：运行/参数控制区 + 右：输出展示区）
+    // Right: README display area (top) + bottom (left: run/param controls + right: output)
     private JPanel buildRightPanel() {
         JPanel rightPanel = new JPanel(new BorderLayout());
 
@@ -133,8 +130,18 @@ public class LauncherApp extends JFrame {
         readmeView = new ReadmeView();
         readmePanel.add(readmeView, BorderLayout.CENTER);
 
-        // 输出展示区（下）
-        // Output display area (bottom)
+        // 底部左侧：运行按钮 + 参数沙盒面板
+        // Bottom-left: run button + playground panel
+        JPanel controlPanel = new JPanel(new BorderLayout());
+        JPanel runPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 6, 4));
+        runBtn = new JButton(I18n.get(BTN_RUN));
+        runPanel.add(runBtn);
+        playgroundPanel = new PlaygroundPanel();
+        controlPanel.add(runPanel, BorderLayout.NORTH);
+        controlPanel.add(playgroundPanel, BorderLayout.CENTER);
+
+        // 底部右侧：输出展示区
+        // Bottom-right: output display area
         JPanel outputPanel = new JPanel(new BorderLayout());
         outputLabel = new JLabel("=== " + I18n.get(OUTPUT_TITLE) + " ===");
         // 清空按钮放到输出标题栏右侧，紧邻它作用的输出窗口
@@ -151,7 +158,13 @@ public class LauncherApp extends JFrame {
         outputArea.setFont(new Font("Monospaced", Font.PLAIN, 13));
         outputPanel.add(new JScrollPane(outputArea), BorderLayout.CENTER);
 
-        JSplitPane verticalSplit = new JSplitPane(JSplitPane.VERTICAL_SPLIT, readmePanel, outputPanel);
+        // 底部横向分割：控制区在左、输出区在右
+        // Bottom horizontal split: controls on the left, output on the right
+        JSplitPane bottomSplit = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, controlPanel, outputPanel);
+        bottomSplit.setResizeWeight(0.0);
+        bottomSplit.setDividerLocation(220);
+
+        JSplitPane verticalSplit = new JSplitPane(JSplitPane.VERTICAL_SPLIT, readmePanel, bottomSplit);
         verticalSplit.setResizeWeight(0.6);
         verticalSplit.setDividerLocation(360);
         rightPanel.add(verticalSplit, BorderLayout.CENTER);
@@ -162,6 +175,7 @@ public class LauncherApp extends JFrame {
     // Case selection changed: sync the run button state and README display
     private void onCaseSelected(DemoCase demo) {
         runBtn.setEnabled(demo != null);
+        playgroundPanel.showFor(demo instanceof PlaygroundCase pc ? pc : null);
         if (demo != null) {
             showReadme(demo);
         }
@@ -174,12 +188,22 @@ public class LauncherApp extends JFrame {
         runBtn.setEnabled(false);
         statusBar.setText(" " + I18n.get(STATUS_READY));
 
+        // 组装运行动作：PlaygroundCase 用用户选定的参数运行，其余用默认无参运行
+        // Build the run action: PlaygroundCase runs with collected values, others use run()
+        Runnable action;
+        if (demo instanceof PlaygroundCase playground) {
+            Map<String, String> values = playgroundPanel.collectValues();
+            action = () -> playground.run(values);
+        } else {
+            action = demo::run;
+        }
+
         // 在后台线程运行案例，UI 更新切回 EDT（Swing 事件分发线程）
         // Run on a background thread; UI updates are marshalled back to the EDT
         new Thread(() -> {
             String output;
             try {
-                output = OutputCapture.capture(demo::run);
+                output = OutputCapture.capture(action);
             } catch (Exception t) {
                 StringWriter sw = new StringWriter();
                 t.printStackTrace(new PrintWriter(sw));
@@ -232,6 +256,7 @@ public class LauncherApp extends JFrame {
         clearBtn.setText(I18n.get(BTN_CLEAR));
         readmeLabel.setText("=== " + I18n.get(TAB_README) + " ===");
         outputLabel.setText("=== " + I18n.get(OUTPUT_TITLE) + " ===");
+        playgroundPanel.refreshTexts();
         statusBar.setText(statusCountText());
     }
 }
