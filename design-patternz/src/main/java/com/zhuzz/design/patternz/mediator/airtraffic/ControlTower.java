@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.mediator.airtraffic;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,16 +21,16 @@ public class ControlTower implements AirTrafficControl {
     @Override
     public void requestLanding(Airplane plane) {
         if (runwayAvailable) {
-            System.out.println("Tower: " + plane.getName() + " cleared to land.");
+            Messages.println("tower.clearToLand", plane.getName());
             runwayAvailable = false;
         } else {
-            System.out.println("Tower: " + plane.getName() + " hold in the holding pattern.");
+            Messages.println("tower.hold", plane.getName());
         }
     }
 
     @Override
     public void requestTakeoff(Airplane plane) {
-        System.out.println("Tower: " + plane.getName() + " cleared for takeoff.");
+        Messages.println("tower.clearToTakeoff", plane.getName());
         runwayAvailable = true;
     }
 }

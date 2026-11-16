@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.mediator.airtraffic;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 同事：飞机，只通过塔台沟通，不直接联系其他飞机
  * Colleague: airplane, talks only to the tower
@@ -18,12 +20,12 @@ public class Airplane {
     }
 
     public void requestLanding() {
-        System.out.println(name + " requests landing.");
+        Messages.println("airplane.requestLanding", name);
         control.requestLanding(this);
     }
 
     public void requestTakeoff() {
-        System.out.println(name + " requests takeoff.");
+        Messages.println("airplane.requestTakeoff", name);
         control.requestTakeoff(this);
     }
 }

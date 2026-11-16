@@ -108,12 +108,16 @@
 
     <build>
         <resources>
-            <!-- 将源码目录下的 README（*.md）复制到 classpath，供运行时读取
-                 Copy README (*.md) under the source tree onto the classpath -->
+            <!-- 将源码目录下的 README（*.md）与本地化输出资源（*.properties）复制到 classpath，
+                 供运行时读取。输出资源与案例代码同包放置，按包路径解析。
+                 Copy README (*.md) and localized output resources (*.properties) under the
+                 source tree onto the classpath. Output resources are co-located with each
+                 demo package and resolved by package path. -->
             <resource>
                 <directory>src/main/java</directory>
                 <includes>
                     <include>**/*.md</include>
+                    <include>**/*.properties</include>
                 </includes>
             </resource>
             <resource>

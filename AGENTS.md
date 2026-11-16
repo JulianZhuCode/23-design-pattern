@@ -15,6 +15,7 @@ Java 设计模式学习项目（GoF 23 种设计模式）。本文件是项目�
 - 每个设计模式案例是一个实现 `PlaygroundCase` 接口的 `*Demo` 类，放在 `com.zhuzz.design.patternz` 包（或其子包）下。
 - `DemoRegistry` 启动时扫描 `patternz` 包，自动发现全部案例，**无需注册**。
 - `I18nMessages` 枚举 + `messages_en.properties` / `messages_zh.properties` 提供中英文界面文案。
+- 案例运行输出由各子包内的 `output_en.properties` / `output_zh.properties` + `Messages` 提供（见「输出国际化」）。
 
 ## 代码注释规范
 
@@ -59,7 +60,7 @@ elevator.openDoors();
 - `pattern()` 返回 `I18nMessages` 中的 `PAT_*` 常量。
 - `caseNames()` 返回中英文显示名映射。
 - `inputs()` 声明可交互的输入项，无参数时返回空列表。
-- `run(Map<String, String> values)` 编写演示逻辑，用 `System.out` 输出（由 GUI 捕获展示）。
+- `run(Map<String, String> values)` 编写演示逻辑，输出统一用 `Messages.println(key, args...)`（由 GUI 捕获展示），文案放入各包的 `output_*.properties`。
 
 ```java
 public class OfficeSuiteDemo implements PlaygroundCase {
@@ -91,6 +92,31 @@ public class OfficeSuiteDemo implements PlaygroundCase {
 
 - 示例应结合真实世界中常见或好理解的场景（如灯光控制、电梯、文件系统等），便于学习者快速理解模式用途。
 
+## 输出国际化（i18n）
+
+案例运行时打印的文案需支持中英文，规则如下：
+
+- 每个案例子包内放置 `output_en.properties`（英文）与 `output_zh.properties`（中文），与 `README.md` / `README_zh.md` 同级。
+- 领域类 / 演示类中的 `System.out.println("...")` 改为 `Messages.println(key, args...)`；只需取文案不打印时用 `Messages.get(key, args...)`。
+- `key` 用小写点分命名（如 `tower.clearToLand`），占位符用 `MessageFormat` 的 `{0}` / `{1}`，以支持中英文语序差异。
+- 回退链：当前语言 → 英文 → key 本身，漏翻不崩溃、输出仍可读。
+- `Messages` 按调用方所在包自动定位同包下的 `output_*.properties`，无需手动传包名。
+- `pom.xml` 的 `<resources>` 已配置复制 `src/main/java/**/*.properties`，新增资源无需改动 pom。
+
+```properties
+# output_en.properties
+tower.clearToLand=Tower: {0} cleared to land.
+```
+
+```properties
+# output_zh.properties
+tower.clearToLand=塔台：{0} 获准降落。
+```
+
+```java
+Messages.println("tower.clearToLand", plane.getName());
+```
+
 ## 新增案例 / 模式
 
 在现有模式下新增案例：
@@ -99,7 +125,8 @@ public class OfficeSuiteDemo implements PlaygroundCase {
 2. 编写模式相关类（一个类型一个文件）。
 3. 编写 `<案例名>Demo` 类，实现 `PlaygroundCase`（满足自动发现约束）。
 4. 添加 `README.md` 与 `README_zh.md`。
-5. 在 `design-patternz/` 下执行 `.\mvnw.cmd compile` 验证。
+5. 如案例有运行输出，添加 `output_en.properties` 与 `output_zh.properties`，并用 `Messages.println` 输出（见「输出国际化」）。
+6. 在 `design-patternz/` 下执行 `.\mvnw.cmd compile` 验证。
 
 新增全新模式（额外步骤）：
 
