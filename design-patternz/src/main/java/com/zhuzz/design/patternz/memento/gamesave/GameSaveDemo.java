@@ -3,6 +3,7 @@ package com.zhuzz.design.patternz.memento.gamesave;
 import com.zhuzz.design.lab.playground.PlaygroundCase;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
+import com.zhuzz.design.lab.i18n.Messages;
 
 import java.util.List;
 import java.util.Locale;
@@ -25,18 +26,18 @@ public class GameSaveDemo implements PlaygroundCase {
 
         game.setState(1, 100);
         manager.save(game.createMemento());
-        System.out.println("Checkpoint 1: " + game);
+        Messages.println("checkpoint1", game);
 
         game.setState(2, 350);
         manager.save(game.createMemento());
-        System.out.println("Checkpoint 2: " + game);
+        Messages.println("checkpoint2", game);
 
         game.setState(3, 700);
-        System.out.println("Current: " + game);
+        Messages.println("current", game);
 
         // 回退到第一个存档
         // restore to the first checkpoint
         game.restoreMemento(manager.get(0));
-        System.out.println("Restored: " + game);
+        Messages.println("restored", game);
     }
 }

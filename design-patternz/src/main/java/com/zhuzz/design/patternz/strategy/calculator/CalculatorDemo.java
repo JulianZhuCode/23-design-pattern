@@ -1,6 +1,7 @@
 package com.zhuzz.design.patternz.strategy.calculator;
 
 import com.zhuzz.design.lab.i18n.I18nMessages;
+import com.zhuzz.design.lab.i18n.Messages;
 import com.zhuzz.design.lab.playground.PlaygroundCase;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 
@@ -57,6 +58,6 @@ public class CalculatorDemo implements PlaygroundCase {
         int a = Integer.parseInt(values.getOrDefault("a", "5"));
         int b = Integer.parseInt(values.getOrDefault("b", "3"));
         int result = calculator.performOperation(a, b);
-        System.out.println(op + " Result: " + result);
+        Messages.println("calculator.result", op, result);
     }
 }

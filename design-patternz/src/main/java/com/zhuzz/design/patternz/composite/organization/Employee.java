@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.composite.organization;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 叶子节点：员工
  * Leaf: employee
@@ -15,6 +17,6 @@ public class Employee implements OrgComponent {
 
     @Override
     public void display() {
-        System.out.println("Employee: " + name + ", " + position);
+        Messages.println("org.employee", name, position);
     }
 }

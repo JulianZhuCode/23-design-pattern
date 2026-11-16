@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.state.gumball;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 具体状态：已有硬币，可退币或转动曲柄
  * Concrete state: quarter inserted
@@ -13,23 +15,23 @@ public class HasQuarterState implements GumballState {
 
     @Override
     public void insertQuarter() {
-        System.out.println("You already inserted a quarter.");
+        Messages.println("gumball.alreadyInserted");
     }
 
     @Override
     public void ejectQuarter() {
-        System.out.println("Quarter returned.");
+        Messages.println("gumball.quarterReturned");
         machine.setState(new NoQuarterState(machine));
     }
 
     @Override
     public void turnCrank() {
-        System.out.println("You turned the crank.");
+        Messages.println("gumball.turnedCrank");
         machine.setState(new SoldState(machine));
     }
 
     @Override
     public void dispense() {
-        System.out.println("No gumball dispensed yet.");
+        Messages.println("gumball.noGumballDispensedYet");
     }
 }

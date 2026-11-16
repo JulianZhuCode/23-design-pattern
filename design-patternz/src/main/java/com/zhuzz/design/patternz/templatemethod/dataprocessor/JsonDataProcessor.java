@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.templatemethod.dataprocessor;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 具体类：JSON 数据处理流程
  * Concrete class: JSON data processing
@@ -14,11 +16,11 @@ public class JsonDataProcessor extends DataProcessor {
     @Override
     protected String parseData(String rawData) {
         int items = rawData.split("\\{").length - 1;
-        return items + " records parsed from JSON";
+        return Messages.get("dataprocessor.jsonParsed", items);
     }
 
     @Override
     protected void saveData(String parsedData) {
-        System.out.println("[JSON] Saving result: " + parsedData);
+        Messages.println("dataprocessor.jsonSave", parsedData);
     }
 }

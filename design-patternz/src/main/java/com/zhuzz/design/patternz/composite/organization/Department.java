@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.composite.organization;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +24,7 @@ public class Department implements OrgComponent {
 
     @Override
     public void display() {
-        System.out.println("Department: " + name);
+        Messages.println("org.department", name);
         for (OrgComponent component : components) {
             component.display();
         }

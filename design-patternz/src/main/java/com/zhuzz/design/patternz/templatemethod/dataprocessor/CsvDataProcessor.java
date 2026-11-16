@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.templatemethod.dataprocessor;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 具体类：CSV 数据处理流程
  * Concrete class: CSV data processing
@@ -14,11 +16,11 @@ public class CsvDataProcessor extends DataProcessor {
     @Override
     protected String parseData(String rawData) {
         int rows = rawData.split("\n").length - 1;
-        return rows + " records parsed from CSV";
+        return Messages.get("dataprocessor.csvParsed", rows);
     }
 
     @Override
     protected void saveData(String parsedData) {
-        System.out.println("[CSV] Saving result: " + parsedData);
+        Messages.println("dataprocessor.csvSave", parsedData);
     }
 }

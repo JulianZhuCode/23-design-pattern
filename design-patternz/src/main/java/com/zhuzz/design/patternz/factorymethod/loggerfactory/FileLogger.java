@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.factorymethod.loggerfactory;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 具体产品：文件日志
  * Concrete product: file logger
@@ -7,6 +9,6 @@ package com.zhuzz.design.patternz.factorymethod.loggerfactory;
 public class FileLogger implements Logger {
     @Override
     public void log(String message) {
-        System.out.println("[File] writing to log file: " + message);
+        Messages.println("logger.file", message);
     }
 }

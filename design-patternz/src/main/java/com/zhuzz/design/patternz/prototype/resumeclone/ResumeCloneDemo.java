@@ -3,6 +3,7 @@ package com.zhuzz.design.patternz.prototype.resumeclone;
 import com.zhuzz.design.lab.playground.PlaygroundCase;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
+import com.zhuzz.design.lab.i18n.Messages;
 
 import java.util.List;
 import java.util.Locale;
@@ -30,7 +31,7 @@ public class ResumeCloneDemo implements PlaygroundCase {
         copy.setName("Bob");
         copy.getExperience().setCompany("Globex");
 
-        System.out.println("Prototype: " + prototype);
-        System.out.println("Copy:      " + copy);
+        Messages.println("resume.prototype", prototype);
+        Messages.println("resume.copy", copy);
     }
 }

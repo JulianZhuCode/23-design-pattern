@@ -42,6 +42,14 @@ public final class Messages {
         System.out.println(get(key, args));
     }
 
+    /**
+     * 取当前语言文案并打印到标准输出（不换行）。
+     * Prints the localized text to stdout without a trailing newline.
+     */
+    public static void print(String key, Object... args) {
+        System.out.print(get(key, args));
+    }
+
     private static String resolve(String key) {
         Class<?> caller = callerClass();
         String packageName = caller.getPackageName();

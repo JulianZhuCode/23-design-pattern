@@ -3,6 +3,8 @@ package com.zhuzz.design.patternz.singleton.configmanager;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 单例：全局配置管理器
  * 应用启动时加载默认配置，全局共享唯一实例，避免多处重复加载与配置不一致。
@@ -54,7 +56,7 @@ public class ConfigManager {
      * Print all config entries
      */
     public void printAll() {
-        configs.forEach((key, value) -> System.out.println(key + " = " + value));
+        configs.forEach((key, value) -> Messages.println("config.entry", key, value));
     }
 
     /**

@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.flyweight.gobang;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 具体享元：白棋，颜色为共享的内部状态
  * Concrete flyweight: white piece with shared color
@@ -7,6 +9,6 @@ package com.zhuzz.design.patternz.flyweight.gobang;
 public class WhitePiece implements ChessPiece {
     @Override
     public void place(int x, int y) {
-        System.out.println("Placing a white piece at (" + x + "," + y + ")");
+        Messages.println("gobang.placeWhite", x, y);
     }
 }

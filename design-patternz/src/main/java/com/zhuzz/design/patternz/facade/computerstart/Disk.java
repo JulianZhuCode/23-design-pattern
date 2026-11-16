@@ -1,15 +1,17 @@
 package com.zhuzz.design.patternz.facade.computerstart;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 子系统：硬盘
  * Subsystem: disk
  */
 public class Disk {
     public void read() {
-        System.out.println("Disk is reading data");
+        Messages.println("disk.read");
     }
 
     public void stop() {
-        System.out.println("Disk is stopped");
+        Messages.println("disk.stop");
     }
 }

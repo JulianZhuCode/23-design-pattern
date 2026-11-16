@@ -1,15 +1,17 @@
 package com.zhuzz.design.patternz.facade.hometheater;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 子系统：投影仪
  * Subsystem: projector
  */
 public class Projector {
     public void turnOn() {
-        System.out.println("Projector is turned on");
+        Messages.println("projector.turnOn");
     }
 
     public void turnOff() {
-        System.out.println("Projector is turned off");
+        Messages.println("projector.turnOff");
     }
 }

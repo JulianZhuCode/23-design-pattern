@@ -3,6 +3,7 @@ package com.zhuzz.design.patternz.bridge.remotedevice;
 import com.zhuzz.design.lab.playground.PlaygroundCase;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
+import com.zhuzz.design.lab.i18n.Messages;
 
 import java.util.List;
 import java.util.Locale;
@@ -27,13 +28,13 @@ public class RemoteDeviceDemo implements PlaygroundCase {
         tvRemote.togglePower();
         tvRemote.volumeUp();
         tvRemote.channelUp();
-        System.out.println(tv);
+        Messages.println("remotedevice.device", tv);
 
         Device radio = new Radio();
         AdvancedRemote radioRemote = new AdvancedRemote(radio);
         radioRemote.togglePower();
         radioRemote.volumeUp();
         radioRemote.mute();
-        System.out.println(radio);
+        Messages.println("remotedevice.device", radio);
     }
 }

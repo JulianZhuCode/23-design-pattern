@@ -3,6 +3,7 @@ package com.zhuzz.design.patternz.visitor.shoppingcart;
 import com.zhuzz.design.lab.playground.PlaygroundCase;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
+import com.zhuzz.design.lab.i18n.Messages;
 
 import java.util.List;
 import java.util.Locale;
@@ -27,6 +28,6 @@ public class ShoppingCartDemo implements PlaygroundCase {
         book.accept(calculator);
         phone.accept(calculator);
 
-        System.out.println("Total price: " + calculator.getTotal());
+        Messages.println("cart.total", calculator.getTotal());
     }
 }

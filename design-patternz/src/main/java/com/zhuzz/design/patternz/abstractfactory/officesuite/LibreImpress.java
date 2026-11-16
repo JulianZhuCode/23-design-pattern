@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.abstractfactory.officesuite;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * Linux 产品：LibreOffice Impress
  * Linux product: Impress
@@ -7,6 +9,6 @@ package com.zhuzz.design.patternz.abstractfactory.officesuite;
 public class LibreImpress implements Presentation {
     @Override
     public void showSlides() {
-        System.out.println("Showing slides with LibreOffice Impress");
+        Messages.println("impress.show");
     }
 }

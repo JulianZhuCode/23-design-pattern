@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.templatemethod.beverage;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 具体类：咖啡
  * Concrete class: coffee
@@ -8,11 +10,11 @@ public class Coffee extends Beverage {
 
     @Override
     protected void brew() {
-        System.out.println("Dripping coffee through filter");
+        Messages.println("beverage.drippingCoffee");
     }
 
     @Override
     protected void addCondiments() {
-        System.out.println("Adding sugar and milk");
+        Messages.println("beverage.addingSugarMilk");
     }
 }

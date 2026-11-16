@@ -3,6 +3,7 @@ package com.zhuzz.design.patternz.builder.housebuilder;
 import com.zhuzz.design.lab.playground.PlaygroundCase;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
+import com.zhuzz.design.lab.i18n.Messages;
 
 import java.util.List;
 import java.util.Locale;
@@ -34,6 +35,6 @@ public class HouseBuilderDemo implements PlaygroundCase {
         }
         Director director = new Director(builder);
         House house = director.constructHouse();
-        System.out.println(type + " House: " + house);
+        Messages.println("houseBuilder.result", type, house);
     }
 }

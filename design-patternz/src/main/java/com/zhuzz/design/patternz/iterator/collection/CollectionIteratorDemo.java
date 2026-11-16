@@ -3,6 +3,7 @@ package com.zhuzz.design.patternz.iterator.collection;
 import com.zhuzz.design.lab.playground.PlaygroundCase;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
+import com.zhuzz.design.lab.i18n.Messages;
 
 import java.util.List;
 import java.util.Locale;
@@ -31,7 +32,7 @@ public class CollectionIteratorDemo implements PlaygroundCase {
 
         Iterator<String> iterator = collection.createIterator();
         while (iterator.hasNext()) {
-            System.out.println(iterator.next());
+            Messages.println("collection.item", iterator.next());
         }
     }
 }

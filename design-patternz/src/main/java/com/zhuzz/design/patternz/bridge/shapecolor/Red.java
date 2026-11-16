@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.bridge.shapecolor;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 具体实现：红色
  * Concrete implementor: red
@@ -7,6 +9,6 @@ package com.zhuzz.design.patternz.bridge.shapecolor;
 public class Red implements Color {
     @Override
     public void applyColor() {
-        System.out.println("Applying red color");
+        Messages.println("red.applying");
     }
 }

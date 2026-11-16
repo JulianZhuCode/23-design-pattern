@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.adapter.mediaplayer;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 被适配者：VLC 播放器
  * Adaptee: VLC player
@@ -7,7 +9,7 @@ package com.zhuzz.design.patternz.adapter.mediaplayer;
 public class VlcPlayer implements AdvancedMediaPlayer {
     @Override
     public void playVlc(String fileName) {
-        System.out.println("Playing VLC file: " + fileName);
+        Messages.println("vlcPlayer.play", fileName);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.state.gumball;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 糖果机上下文：持有当前状态并把动作委托给状态对象
  * Context: holds state, delegates actions
@@ -35,7 +37,7 @@ public class GumballMachine {
     public void releaseBall() {
         if (count > 0) {
             count--;
-            System.out.println("A gumball comes rolling out...");
+            Messages.println("gumball.ballComesOut");
         }
     }
 

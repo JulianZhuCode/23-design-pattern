@@ -3,6 +3,7 @@ package com.zhuzz.design.patternz.interpreter.booleanexpression;
 import com.zhuzz.design.lab.playground.PlaygroundCase;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
+import com.zhuzz.design.lab.i18n.Messages;
 
 import java.util.List;
 import java.util.Locale;
@@ -38,6 +39,6 @@ public class BooleanExpressionDemo implements PlaygroundCase {
         // 解释并计算：(true AND false) OR (NOT true) = false
         // interpret: (true AND false) OR (NOT true) = false
         boolean result = expression.interpret(context);
-        System.out.println("Result: " + result);
+        Messages.println("result", result);
     }
 }

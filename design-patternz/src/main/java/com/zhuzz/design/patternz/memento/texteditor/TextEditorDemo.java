@@ -3,6 +3,7 @@ package com.zhuzz.design.patternz.memento.texteditor;
 import com.zhuzz.design.lab.playground.PlaygroundCase;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
+import com.zhuzz.design.lab.i18n.Messages;
 
 import java.util.List;
 import java.util.Locale;
@@ -30,7 +31,7 @@ public class TextEditorDemo implements PlaygroundCase {
         // 设置初始状态
         // set initial state
         originator.setState("State 1");
-        System.out.println("Current State: " + originator.getState());
+        Messages.println("currentState", originator.getState());
 
         // 创建备忘录并保存状态
         // create memento and save state
@@ -39,11 +40,11 @@ public class TextEditorDemo implements PlaygroundCase {
         // 修改状态
         // change state
         originator.setState("State 2");
-        System.out.println("Updated State: " + originator.getState());
+        Messages.println("updatedState", originator.getState());
 
         // 恢复之前的状态
         // restore previous state
         originator.restoreMemento(caretaker.getMemento());
-        System.out.println("Restored State: " + originator.getState());
+        Messages.println("restoredState", originator.getState());
     }
 }

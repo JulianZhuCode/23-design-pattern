@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.abstractfactory.officesuite;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * Linux 产品：LibreOffice Writer
  * Linux product: Writer
@@ -7,6 +9,6 @@ package com.zhuzz.design.patternz.abstractfactory.officesuite;
 public class LibreWriter implements WordProcessor {
     @Override
     public void editDocument() {
-        System.out.println("Editing document with LibreOffice Writer");
+        Messages.println("writer.edit");
     }
 }

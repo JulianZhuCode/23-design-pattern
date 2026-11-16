@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.decorator.datastream;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 具体组件：文件数据源
  * Concrete component: file data source
@@ -10,7 +12,7 @@ public class FileDataSource implements DataSource {
     @Override
     public void writeData(String data) {
         this.data = data;
-        System.out.println("Writing raw data: " + data);
+        Messages.println("dataStream.writeRaw", data);
     }
 
     @Override

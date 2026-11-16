@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.templatemethod.beverage;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 具体类：茶
  * Concrete class: tea
@@ -8,11 +10,11 @@ public class Tea extends Beverage {
 
     @Override
     protected void brew() {
-        System.out.println("Steeping the tea");
+        Messages.println("beverage.steepingTea");
     }
 
     @Override
     protected void addCondiments() {
-        System.out.println("Adding lemon");
+        Messages.println("beverage.addingLemon");
     }
 }

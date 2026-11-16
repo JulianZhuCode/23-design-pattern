@@ -3,6 +3,7 @@ package com.zhuzz.design.patternz.decorator.datastream;
 import com.zhuzz.design.lab.playground.PlaygroundCase;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
+import com.zhuzz.design.lab.i18n.Messages;
 
 import java.util.List;
 import java.util.Locale;
@@ -24,18 +25,18 @@ public class DataStreamDemo implements PlaygroundCase {
         // plain file data source
         DataSource plain = new FileDataSource();
         plain.writeData("Hello");
-        System.out.println("Plain read: " + plain.readData());
+        Messages.println("dataStream.plainRead", plain.readData());
 
         // 加密数据源
         // encrypted data source
         DataSource encrypted = new EncryptionDecorator(new FileDataSource());
         encrypted.writeData("Secret");
-        System.out.println("Encrypted read: " + encrypted.readData());
+        Messages.println("dataStream.encryptedRead", encrypted.readData());
 
         // 压缩 + 加密组合
         // combined compression + encryption
         DataSource combined = new CompressionDecorator(new EncryptionDecorator(new FileDataSource()));
         combined.writeData("Secret");
-        System.out.println("Combined read: " + combined.readData());
+        Messages.println("dataStream.combinedRead", combined.readData());
     }
 }

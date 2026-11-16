@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.bridge.shapecolor;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 扩展抽象化：圆形
  * Refined abstraction: circle
@@ -11,7 +13,7 @@ public class Circle extends Shape {
 
     @Override
     public void draw() {
-        System.out.print("Drawing a circle. ");
+        Messages.print("circle.drawing");
         color.applyColor();
     }
 }

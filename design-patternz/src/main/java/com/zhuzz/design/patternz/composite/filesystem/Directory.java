@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.composite.filesystem;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +24,7 @@ public class Directory implements FileSystemComponent {
 
     @Override
     public void displayInfo() {
-        System.out.println("Directory: " + name);
+        Messages.println("filesystem.directory", name);
         for (FileSystemComponent component : components) {
             component.displayInfo();
         }

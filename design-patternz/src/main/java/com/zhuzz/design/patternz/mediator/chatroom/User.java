@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.mediator.chatroom;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 用户：通过中介者与其他用户通信
  * Colleague: communicates via mediator
@@ -14,11 +16,11 @@ public class User {
     }
 
     public void sendMessage(String message) {
-        System.out.println(name + " 发送消息: " + message);
+        Messages.println("user.send", name, message);
         mediator.sendMessage(message, this);
     }
 
     public void receiveMessage(String message) {
-        System.out.println(name + " 收到消息: " + message);
+        Messages.println("user.receive", name, message);
     }
 }

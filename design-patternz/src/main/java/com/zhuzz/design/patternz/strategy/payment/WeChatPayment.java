@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.strategy.payment;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 具体策略：微信支付
  * Concrete strategy: WeChat payment
@@ -13,6 +15,6 @@ public class WeChatPayment implements PaymentStrategy {
 
     @Override
     public void pay(double amount) {
-        System.out.println("Paid " + amount + " via WeChat " + account);
+        Messages.println("payment.wechat", amount, account);
     }
 }

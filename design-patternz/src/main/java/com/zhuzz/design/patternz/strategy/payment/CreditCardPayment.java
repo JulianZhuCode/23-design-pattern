@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.strategy.payment;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 具体策略：信用卡支付
  * Concrete strategy: credit card payment
@@ -13,6 +15,6 @@ public class CreditCardPayment implements PaymentStrategy {
 
     @Override
     public void pay(double amount) {
-        System.out.println("Paid " + amount + " via credit card " + cardNumber);
+        Messages.println("payment.creditcard", amount, cardNumber);
     }
 }

@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.state.gumball;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 具体状态：无硬币，等待投币
  * Concrete state: no quarter inserted
@@ -13,22 +15,22 @@ public class NoQuarterState implements GumballState {
 
     @Override
     public void insertQuarter() {
-        System.out.println("Quarter inserted.");
+        Messages.println("gumball.quarterInserted");
         machine.setState(new HasQuarterState(machine));
     }
 
     @Override
     public void ejectQuarter() {
-        System.out.println("No quarter to eject.");
+        Messages.println("gumball.noQuarterToEject");
     }
 
     @Override
     public void turnCrank() {
-        System.out.println("Insert a quarter first.");
+        Messages.println("gumball.insertQuarterFirst");
     }
 
     @Override
     public void dispense() {
-        System.out.println("Insert a quarter first.");
+        Messages.println("gumball.insertQuarterFirst");
     }
 }

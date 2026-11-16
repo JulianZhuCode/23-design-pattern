@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.strategy.payment;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 具体策略：PayPal 支付
  * Concrete strategy: PayPal payment
@@ -13,6 +15,6 @@ public class PayPalPayment implements PaymentStrategy {
 
     @Override
     public void pay(double amount) {
-        System.out.println("Paid " + amount + " via PayPal " + email);
+        Messages.println("payment.paypal", amount, email);
     }
 }

@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.facade.hometheater;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 外观：统一封装观影所需的多个子系统操作
  * Facade: wraps subsystem operations for movie watching
@@ -16,14 +18,14 @@ public class HomeTheaterFacade {
     }
 
     public void watchMovie() {
-        System.out.println("Getting ready to watch a movie...");
+        Messages.println("homeTheater.watch");
         lights.turnOff();
         projector.turnOn();
         stereo.turnOn();
     }
 
     public void endMovie() {
-        System.out.println("Ending the movie...");
+        Messages.println("homeTheater.end");
         stereo.turnOff();
         projector.turnOff();
         lights.turnOn();

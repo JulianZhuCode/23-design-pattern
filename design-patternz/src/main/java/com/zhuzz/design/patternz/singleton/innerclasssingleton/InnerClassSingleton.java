@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.singleton.innerclasssingleton;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 单例模式：静态内部类实现
  * 私有静态内部类 Holder 持有唯一实例，类加载保证线程安全，首次调用 getInstance() 时才初始化，实现懒加载。
@@ -28,7 +30,7 @@ public class InnerClassSingleton {
      * Demo method
      */
     public void showMessage() {
-        System.out.println("Hello, I am a Singleton!");
+        Messages.println("singleton.hello");
     }
 
     /**

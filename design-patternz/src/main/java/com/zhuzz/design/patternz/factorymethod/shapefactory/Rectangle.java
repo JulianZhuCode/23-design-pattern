@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.factorymethod.shapefactory;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 具体产品：矩形
  * Concrete product: rectangle
@@ -7,6 +9,6 @@ package com.zhuzz.design.patternz.factorymethod.shapefactory;
 public class Rectangle implements Shape {
     @Override
     public void draw() {
-        System.out.println("Drawing a rectangle");
+        Messages.println("shape.rectangle");
     }
 }

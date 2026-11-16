@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.state.gumball;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 具体状态：售出中，转动曲柄后出货
  * Concrete state: dispensing
@@ -13,17 +15,17 @@ public class SoldState implements GumballState {
 
     @Override
     public void insertQuarter() {
-        System.out.println("Please wait, dispensing.");
+        Messages.println("gumball.pleaseWaitDispensing");
     }
 
     @Override
     public void ejectQuarter() {
-        System.out.println("Too late, crank turned.");
+        Messages.println("gumball.tooLateCrankTurned");
     }
 
     @Override
     public void turnCrank() {
-        System.out.println("Turning twice does not help.");
+        Messages.println("gumball.turningTwiceDoesNotHelp");
     }
 
     @Override

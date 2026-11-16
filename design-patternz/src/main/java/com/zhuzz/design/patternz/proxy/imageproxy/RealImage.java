@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.proxy.imageproxy;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 真实主题：真正加载并显示图片
  * Real subject: loads and displays the image
@@ -13,11 +15,11 @@ public class RealImage implements Image {
     }
 
     private void loadImageFromDisk() {
-        System.out.println("Loading image from disk: " + filename);
+        Messages.println("image.loading", filename);
     }
 
     @Override
     public void display() {
-        System.out.println("Displaying image: " + filename);
+        Messages.println("image.display", filename);
     }
 }

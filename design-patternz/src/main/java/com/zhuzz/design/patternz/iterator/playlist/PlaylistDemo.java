@@ -3,6 +3,7 @@ package com.zhuzz.design.patternz.iterator.playlist;
 import com.zhuzz.design.lab.playground.PlaygroundCase;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
+import com.zhuzz.design.lab.i18n.Messages;
 
 import java.util.List;
 import java.util.Locale;
@@ -27,18 +28,18 @@ public class PlaylistDemo implements PlaygroundCase {
 
         // 顺序遍历
         // forward traversal
-        System.out.println("Forward:");
+        Messages.println("playlist.forward");
         SongIterator forward = playlist.createIterator();
         while (forward.hasNext()) {
-            System.out.println(forward.next());
+            Messages.println("playlist.song", forward.next());
         }
 
         // 逆序遍历
         // reverse traversal
-        System.out.println("Reverse:");
+        Messages.println("playlist.reverse");
         SongIterator reverse = playlist.createReverseIterator();
         while (reverse.hasNext()) {
-            System.out.println(reverse.next());
+            Messages.println("playlist.song", reverse.next());
         }
     }
 }

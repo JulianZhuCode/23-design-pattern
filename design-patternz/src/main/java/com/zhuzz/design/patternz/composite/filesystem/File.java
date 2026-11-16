@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.composite.filesystem;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 叶子节点：文件
  * Leaf: file
@@ -13,6 +15,6 @@ public class File implements FileSystemComponent {
 
     @Override
     public void displayInfo() {
-        System.out.println("File: " + name);
+        Messages.println("filesystem.file", name);
     }
 }

@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.abstractfactory.officesuite;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * Linux 产品：LibreOffice Calc
  * Linux product: Calc
@@ -7,6 +9,6 @@ package com.zhuzz.design.patternz.abstractfactory.officesuite;
 public class LibreCalc implements Spreadsheet {
     @Override
     public void calculate() {
-        System.out.println("Calculating with LibreOffice Calc");
+        Messages.println("calc.calculate");
     }
 }

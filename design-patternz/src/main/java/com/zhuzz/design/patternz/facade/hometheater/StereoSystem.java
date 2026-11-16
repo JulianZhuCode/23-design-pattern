@@ -1,15 +1,17 @@
 package com.zhuzz.design.patternz.facade.hometheater;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 子系统：音响系统
  * Subsystem: stereo
  */
 public class StereoSystem {
     public void turnOn() {
-        System.out.println("Stereo System is turned on");
+        Messages.println("stereo.turnOn");
     }
 
     public void turnOff() {
-        System.out.println("Stereo System is turned off");
+        Messages.println("stereo.turnOff");
     }
 }

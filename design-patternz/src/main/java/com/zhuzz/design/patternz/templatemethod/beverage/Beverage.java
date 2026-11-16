@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.templatemethod.beverage;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 抽象类：定义饮品的制作骨架（模板方法）
  * Abstract class: defines the beverage-making skeleton
@@ -24,7 +26,7 @@ public abstract class Beverage {
      * Primitive step: boil water (shared)
      */
     protected void boilWater() {
-        System.out.println("Boiling water");
+        Messages.println("beverage.boilingWater");
     }
 
     /**
@@ -38,7 +40,7 @@ public abstract class Beverage {
      * Primitive step: pour into cup (shared)
      */
     protected void pourInCup() {
-        System.out.println("Pouring into cup");
+        Messages.println("beverage.pouringIntoUp");
     }
 
     /**

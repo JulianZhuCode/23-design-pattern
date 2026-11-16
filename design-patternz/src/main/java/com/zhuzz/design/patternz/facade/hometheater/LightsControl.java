@@ -1,15 +1,17 @@
 package com.zhuzz.design.patternz.facade.hometheater;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 子系统：灯光控制
  * Subsystem: lights
  */
 public class LightsControl {
     public void turnOn() {
-        System.out.println("Lights are turned on");
+        Messages.println("lights.turnOn");
     }
 
     public void turnOff() {
-        System.out.println("Lights are turned off");
+        Messages.println("lights.turnOff");
     }
 }

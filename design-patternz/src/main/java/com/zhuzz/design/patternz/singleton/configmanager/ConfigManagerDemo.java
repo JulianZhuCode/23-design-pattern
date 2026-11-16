@@ -3,6 +3,7 @@ package com.zhuzz.design.patternz.singleton.configmanager;
 import com.zhuzz.design.lab.playground.PlaygroundCase;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
+import com.zhuzz.design.lab.i18n.Messages;
 
 import java.util.List;
 import java.util.Locale;
@@ -24,16 +25,16 @@ public class ConfigManagerDemo implements PlaygroundCase {
         // Fetch twice to verify the same instance
         ConfigManager first = ConfigManager.getInstance();
         ConfigManager second = ConfigManager.getInstance();
-        System.out.println("Same instance: " + (first == second));
+        Messages.println("config.sameInstance", first == second);
 
         // 读取默认配置
         // Read default config
-        System.out.println("app.name = " + first.get("app.name"));
+        Messages.println("config.entry", "app.name", first.get("app.name"));
 
         // 修改配置后从另一处读取，验证全局共享
         // Update then read from the other reference to verify shared state
         first.set("app.theme", "dark");
-        System.out.println("app.theme = " + second.get("app.theme"));
+        Messages.println("config.entry", "app.theme", second.get("app.theme"));
 
         // 打印全部配置
         // Print all entries

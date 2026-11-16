@@ -3,6 +3,7 @@ package com.zhuzz.design.patternz.flyweight.gobang;
 import com.zhuzz.design.lab.playground.PlaygroundCase;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
+import com.zhuzz.design.lab.i18n.Messages;
 
 import java.util.List;
 import java.util.Locale;
@@ -27,8 +28,8 @@ public class GobangDemo implements PlaygroundCase {
         ChessPiece white1 = PieceFactory.getPiece("white");
         ChessPiece white2 = PieceFactory.getPiece("white");
 
-        System.out.println("black reused: " + (black1 == black2));
-        System.out.println("white reused: " + (white1 == white2));
+        Messages.println("gobang.blackReused", black1 == black2);
+        Messages.println("gobang.whiteReused", white1 == white2);
 
         // 落子时坐标作为外部状态传入
         // coordinates passed as external state

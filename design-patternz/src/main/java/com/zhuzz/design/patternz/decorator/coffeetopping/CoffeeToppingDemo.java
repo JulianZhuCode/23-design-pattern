@@ -3,6 +3,7 @@ package com.zhuzz.design.patternz.decorator.coffeetopping;
 import com.zhuzz.design.lab.playground.PlaygroundCase;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
+import com.zhuzz.design.lab.i18n.Messages;
 
 import java.util.List;
 import java.util.Locale;
@@ -45,6 +46,6 @@ public class CoffeeToppingDemo implements PlaygroundCase {
         if ("Yes".equals(values.getOrDefault("sugar", "No"))) {
             coffee = new SugarDecorator(coffee);
         }
-        System.out.println("Cost: $" + coffee.cost() + ", Description: " + coffee.description());
+        Messages.println("coffeeTopping.result", coffee.cost(), coffee.description());
     }
 }

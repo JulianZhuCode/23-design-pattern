@@ -3,6 +3,7 @@ package com.zhuzz.design.patternz.prototype.shapeclone;
 import com.zhuzz.design.lab.playground.PlaygroundCase;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
+import com.zhuzz.design.lab.i18n.Messages;
 
 import java.util.List;
 import java.util.Locale;
@@ -31,7 +32,7 @@ public class ShapeCloneDemo implements PlaygroundCase {
 
         // 输出原型与克隆的类型
         // Print original and cloned types
-        System.out.println("Original Shape Type: " + circle.getType());
-        System.out.println("Cloned Shape Type: " + clonedCircle.getType());
+        Messages.println("shape.original", circle.getType());
+        Messages.println("shape.cloned", clonedCircle.getType());
     }
 }

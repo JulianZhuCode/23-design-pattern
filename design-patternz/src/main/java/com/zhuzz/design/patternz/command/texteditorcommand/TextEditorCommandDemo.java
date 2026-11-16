@@ -3,6 +3,7 @@ package com.zhuzz.design.patternz.command.texteditorcommand;
 import com.zhuzz.design.lab.playground.PlaygroundCase;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
+import com.zhuzz.design.lab.i18n.Messages;
 
 import java.util.List;
 import java.util.Locale;
@@ -32,9 +33,9 @@ public class TextEditorCommandDemo implements PlaygroundCase {
         // type the user-provided text, then demonstrate undo
         String text = values.getOrDefault("text", "Hello");
         invoker.execute(new TypeCommand(editor, text));
-        System.out.println("Text: " + editor.getText());
+        Messages.println("textEditor.current", editor.getText());
 
         invoker.undo();
-        System.out.println("After undo: " + editor.getText());
+        Messages.println("textEditor.afterUndo", editor.getText());
     }
 }

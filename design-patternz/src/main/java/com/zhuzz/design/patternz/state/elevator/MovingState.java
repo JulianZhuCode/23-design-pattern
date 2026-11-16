@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.state.elevator;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 具体状态：移动中
  * Concrete state: moving
@@ -13,22 +15,22 @@ public class MovingState implements ElevatorState {
 
     @Override
     public void openDoors() {
-        System.out.println("Cannot open doors while moving.");
+        Messages.println("elevator.cannotOpenWhileMoving");
     }
 
     @Override
     public void closeDoors() {
-        System.out.println("Doors are already closed.");
+        Messages.println("elevator.doorsAlreadyClosed");
     }
 
     @Override
     public void move() {
-        System.out.println("Already moving.");
+        Messages.println("elevator.alreadyMoving");
     }
 
     @Override
     public void stop() {
-        System.out.println("Stopping.");
+        Messages.println("elevator.stopping");
         elevator.setState(new CloseState(elevator));
     }
 }

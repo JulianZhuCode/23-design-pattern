@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.state.gumball;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 具体状态：售罄，所有动作均无效
  * Concrete state: sold out
@@ -13,21 +15,21 @@ public class SoldOutState implements GumballState {
 
     @Override
     public void insertQuarter() {
-        System.out.println("Sold out.");
+        Messages.println("gumball.soldOut");
     }
 
     @Override
     public void ejectQuarter() {
-        System.out.println("No quarter to eject.");
+        Messages.println("gumball.noQuarterToEject");
     }
 
     @Override
     public void turnCrank() {
-        System.out.println("Sold out.");
+        Messages.println("gumball.soldOut");
     }
 
     @Override
     public void dispense() {
-        System.out.println("No gumball.");
+        Messages.println("gumball.noGumball");
     }
 }

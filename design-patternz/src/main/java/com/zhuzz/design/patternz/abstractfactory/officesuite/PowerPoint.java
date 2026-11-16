@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.abstractfactory.officesuite;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * Windows 产品：Microsoft PowerPoint
  * Windows product: PowerPoint
@@ -7,6 +9,6 @@ package com.zhuzz.design.patternz.abstractfactory.officesuite;
 public class PowerPoint implements Presentation {
     @Override
     public void showSlides() {
-        System.out.println("Showing slides with Microsoft PowerPoint");
+        Messages.println("powerpoint.show");
     }
 }

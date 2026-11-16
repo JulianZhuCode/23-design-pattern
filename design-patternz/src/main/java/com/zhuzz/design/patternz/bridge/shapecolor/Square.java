@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.bridge.shapecolor;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 扩展抽象化：正方形
  * Refined abstraction: square
@@ -11,7 +13,7 @@ public class Square extends Shape {
 
     @Override
     public void draw() {
-        System.out.print("Drawing a square. ");
+        Messages.print("square.drawing");
         color.applyColor();
     }
 }

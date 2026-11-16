@@ -1,5 +1,7 @@
 package com.zhuzz.design.patternz.adapter.mediaplayer;
 
+import com.zhuzz.design.lab.i18n.Messages;
+
 /**
  * 被适配者：MP4 播放器
  * Adaptee: MP4 player
@@ -13,6 +15,6 @@ public class Mp4Player implements AdvancedMediaPlayer {
 
     @Override
     public void playMp4(String fileName) {
-        System.out.println("Playing MP4 file: " + fileName);
+        Messages.println("mp4Player.play", fileName);
     }
 }
