@@ -1,19 +1,25 @@
 package com.zhuzz.design.patternz.decorator.datastream;
 
-import com.zhuzz.design.lab.DemoCase;
+import com.zhuzz.design.lab.playground.PlaygroundCase;
+import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
-public class DataStreamDemo implements DemoCase {
+public class DataStreamDemo implements PlaygroundCase {
     @Override public I18nMessages pattern() { return PAT_DECORATOR; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Data Stream", Locale.SIMPLIFIED_CHINESE, "数据流装饰");
     }
-    @Override public void run() {
+    @Override public List<PlaygroundInput> inputs() {
+        return List.of();
+    }
+
+    @Override public void run(Map<String, String> values) {
         // 原始文件数据源
         // plain file data source
         DataSource plain = new FileDataSource();

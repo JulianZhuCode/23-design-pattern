@@ -1,19 +1,25 @@
 package com.zhuzz.design.patternz.memento.gamesave;
 
-import com.zhuzz.design.lab.DemoCase;
+import com.zhuzz.design.lab.playground.PlaygroundCase;
+import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
-public class GameSaveDemo implements DemoCase {
+public class GameSaveDemo implements PlaygroundCase {
     @Override public I18nMessages pattern() { return PAT_MEMENTO; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Game Save", Locale.SIMPLIFIED_CHINESE, "游戏存档");
     }
-    @Override public void run() {
+    @Override public List<PlaygroundInput> inputs() {
+        return List.of();
+    }
+
+    @Override public void run(Map<String, String> values) {
         Game game = new Game();
         SaveManager manager = new SaveManager();
 

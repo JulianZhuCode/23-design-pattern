@@ -1,19 +1,25 @@
 package com.zhuzz.design.patternz.prototype.shapeclone;
 
-import com.zhuzz.design.lab.DemoCase;
+import com.zhuzz.design.lab.playground.PlaygroundCase;
+import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
-public class ShapeCloneDemo implements DemoCase {
+public class ShapeCloneDemo implements PlaygroundCase {
     @Override public I18nMessages pattern() { return PAT_PROTOTYPE; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Shape Clone", Locale.SIMPLIFIED_CHINESE, "图形克隆");
     }
-    @Override public void run() {
+    @Override public List<PlaygroundInput> inputs() {
+        return List.of();
+    }
+
+    @Override public void run(Map<String, String> values) {
         // 创建原型对象
         // Create the prototype
         Shape circle = new Shape("Circle");

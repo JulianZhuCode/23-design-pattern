@@ -1,8 +1,10 @@
 package com.zhuzz.design.patternz.proxy.imageproxy;
 
-import com.zhuzz.design.lab.DemoCase;
+import com.zhuzz.design.lab.playground.PlaygroundCase;
+import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -12,12 +14,16 @@ import static com.zhuzz.design.lab.i18n.I18nMessages.*;
  * 代理模式演示：延迟加载图片
  * Proxy demo: lazy image loading
  */
-public class ImageProxyDemo implements DemoCase {
+public class ImageProxyDemo implements PlaygroundCase {
     @Override public I18nMessages pattern() { return PAT_PROXY; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Lazy Image", Locale.SIMPLIFIED_CHINESE, "图片延迟加载");
     }
-    @Override public void run() {
+    @Override public List<PlaygroundInput> inputs() {
+        return List.of();
+    }
+
+    @Override public void run(Map<String, String> values) {
         Image image = new ProxyImage("sample.jpg");
 
         // 首次 display() 时才真正加载

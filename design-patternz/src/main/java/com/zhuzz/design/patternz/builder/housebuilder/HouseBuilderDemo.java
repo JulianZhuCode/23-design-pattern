@@ -1,27 +1,39 @@
 package com.zhuzz.design.patternz.builder.housebuilder;
 
-import com.zhuzz.design.lab.DemoCase;
+import com.zhuzz.design.lab.playground.PlaygroundCase;
+import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
-public class HouseBuilderDemo implements DemoCase {
+public class HouseBuilderDemo implements PlaygroundCase {
     @Override public I18nMessages pattern() { return PAT_BUILDER; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "House Builder", Locale.SIMPLIFIED_CHINESE, "房屋建造");
     }
-    @Override public void run() {
-        HouseBuilder concreteBuilder = new ConcreteHouseBuilder();
-        Director director1 = new Director(concreteBuilder);
-        House concreteHouse = director1.constructHouse();
-        System.out.println("Concrete House: " + concreteHouse);
+    @Override public List<PlaygroundInput> inputs() {
+        return List.of(new PlaygroundInput(
+                "type",
+                Map.of(Locale.ENGLISH, "House Type", Locale.SIMPLIFIED_CHINESE, "房屋类型"),
+                PlaygroundInput.Type.CHOICE,
+                List.of("Concrete", "Luxury"),
+                "Concrete"));
+    }
 
-        HouseBuilder luxuryBuilder = new LuxuryHouseBuilder();
-        Director director2 = new Director(luxuryBuilder);
-        House luxuryHouse = director2.constructHouse();
-        System.out.println("Luxury House: " + luxuryHouse);
+    @Override public void run(Map<String, String> values) {
+        // 按用户选择的房屋类型选择建造者，交由 Director 组装
+        // pick a builder by the user-selected type, then let the Director assemble it
+        String type = values.getOrDefault("type", "Concrete");
+        HouseBuilder builder = new ConcreteHouseBuilder();
+        if ("Luxury".equals(type)) {
+            builder = new LuxuryHouseBuilder();
+        }
+        Director director = new Director(builder);
+        House house = director.constructHouse();
+        System.out.println(type + " House: " + house);
     }
 }

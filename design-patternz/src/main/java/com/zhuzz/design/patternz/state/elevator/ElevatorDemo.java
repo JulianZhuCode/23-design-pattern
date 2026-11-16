@@ -1,19 +1,25 @@
 package com.zhuzz.design.patternz.state.elevator;
 
-import com.zhuzz.design.lab.DemoCase;
+import com.zhuzz.design.lab.playground.PlaygroundCase;
+import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
-public class ElevatorDemo implements DemoCase {
+public class ElevatorDemo implements PlaygroundCase {
     @Override public I18nMessages pattern() { return PAT_STATE; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Elevator State", Locale.SIMPLIFIED_CHINESE, "电梯状态");
     }
-    @Override public void run() {
+    @Override public List<PlaygroundInput> inputs() {
+        return List.of();
+    }
+
+    @Override public void run(Map<String, String> values) {
         Elevator elevator = new Elevator();
 
         // 开门：已处于开门状态

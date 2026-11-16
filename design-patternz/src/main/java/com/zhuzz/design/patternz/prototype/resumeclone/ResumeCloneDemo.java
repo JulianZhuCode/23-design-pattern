@@ -1,19 +1,25 @@
 package com.zhuzz.design.patternz.prototype.resumeclone;
 
-import com.zhuzz.design.lab.DemoCase;
+import com.zhuzz.design.lab.playground.PlaygroundCase;
+import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
-public class ResumeCloneDemo implements DemoCase {
+public class ResumeCloneDemo implements PlaygroundCase {
     @Override public I18nMessages pattern() { return PAT_PROTOTYPE; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Resume Clone", Locale.SIMPLIFIED_CHINESE, "简历克隆");
     }
-    @Override public void run() {
+    @Override public List<PlaygroundInput> inputs() {
+        return List.of();
+    }
+
+    @Override public void run(Map<String, String> values) {
         // 创建原型简历
         // Create the prototype
         Resume prototype = new Resume("Alice", new WorkExperience("Acme", "2020-2023"));

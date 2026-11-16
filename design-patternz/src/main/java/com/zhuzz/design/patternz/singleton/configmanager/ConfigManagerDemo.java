@@ -1,19 +1,25 @@
 package com.zhuzz.design.patternz.singleton.configmanager;
 
-import com.zhuzz.design.lab.DemoCase;
+import com.zhuzz.design.lab.playground.PlaygroundCase;
+import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
-public class ConfigManagerDemo implements DemoCase {
+public class ConfigManagerDemo implements PlaygroundCase {
     @Override public I18nMessages pattern() { return PAT_SINGLETON; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Global Config", Locale.SIMPLIFIED_CHINESE, "全局配置");
     }
-    @Override public void run() {
+    @Override public List<PlaygroundInput> inputs() {
+        return List.of();
+    }
+
+    @Override public void run(Map<String, String> values) {
         // 两次获取实例，验证是同一个对象
         // Fetch twice to verify the same instance
         ConfigManager first = ConfigManager.getInstance();

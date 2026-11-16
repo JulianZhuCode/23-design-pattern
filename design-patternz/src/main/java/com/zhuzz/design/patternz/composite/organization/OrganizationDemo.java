@@ -1,19 +1,25 @@
 package com.zhuzz.design.patternz.composite.organization;
 
-import com.zhuzz.design.lab.DemoCase;
+import com.zhuzz.design.lab.playground.PlaygroundCase;
+import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
-public class OrganizationDemo implements DemoCase {
+public class OrganizationDemo implements PlaygroundCase {
     @Override public I18nMessages pattern() { return PAT_COMPOSITE; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Organization", Locale.SIMPLIFIED_CHINESE, "组织架构");
     }
-    @Override public void run() {
+    @Override public List<PlaygroundInput> inputs() {
+        return List.of();
+    }
+
+    @Override public void run(Map<String, String> values) {
         // 创建员工与部门
         // create employees and departments
         Employee alice = new Employee("Alice", "Engineer");

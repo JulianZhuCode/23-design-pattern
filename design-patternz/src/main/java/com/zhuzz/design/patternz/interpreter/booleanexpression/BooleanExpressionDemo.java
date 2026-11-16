@@ -1,19 +1,25 @@
 package com.zhuzz.design.patternz.interpreter.booleanexpression;
 
-import com.zhuzz.design.lab.DemoCase;
+import com.zhuzz.design.lab.playground.PlaygroundCase;
+import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
-public class BooleanExpressionDemo implements DemoCase {
+public class BooleanExpressionDemo implements PlaygroundCase {
     @Override public I18nMessages pattern() { return PAT_INTERPRETER; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Boolean Expression", Locale.SIMPLIFIED_CHINESE, "布尔表达式");
     }
-    @Override public void run() {
+    @Override public List<PlaygroundInput> inputs() {
+        return List.of();
+    }
+
+    @Override public void run(Map<String, String> values) {
         Context context = new Context();
         context.assign("A", true);
         context.assign("B", false);

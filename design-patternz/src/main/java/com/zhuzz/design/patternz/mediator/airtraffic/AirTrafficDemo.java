@@ -1,19 +1,25 @@
 package com.zhuzz.design.patternz.mediator.airtraffic;
 
-import com.zhuzz.design.lab.DemoCase;
+import com.zhuzz.design.lab.playground.PlaygroundCase;
+import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
-public class AirTrafficDemo implements DemoCase {
+public class AirTrafficDemo implements PlaygroundCase {
     @Override public I18nMessages pattern() { return PAT_MEDIATOR; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Air Traffic", Locale.SIMPLIFIED_CHINESE, "空中交通");
     }
-    @Override public void run() {
+    @Override public List<PlaygroundInput> inputs() {
+        return List.of();
+    }
+
+    @Override public void run(Map<String, String> values) {
         ControlTower tower = new ControlTower();
 
         Airplane flight1 = new Airplane("Flight A", tower);

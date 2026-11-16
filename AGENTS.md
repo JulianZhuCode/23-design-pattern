@@ -12,7 +12,7 @@ Java 设计模式学习项目（GoF 23 种设计模式）。本文件是项目�
 核心机制：
 
 - 框架代码（`DemoCase`、`DemoRegistry`、`LauncherApp`、`I18n` 等）位于 `com.zhuzz.design.lab` 包。
-- 每个设计模式案例是一个实现 `DemoCase` 接口的 `*Demo` 类，放在 `com.zhuzz.design.patternz` 包（或其子包）下。
+- 每个设计模式案例是一个实现 `PlaygroundCase` 接口的 `*Demo` 类，放在 `com.zhuzz.design.patternz` 包（或其子包）下。
 - `DemoRegistry` 启动时扫描 `patternz` 包，自动发现全部案例，**无需注册**。
 - `I18nMessages` 枚举 + `messages_en.properties` / `messages_zh.properties` 提供中英文界面文案。
 
@@ -54,19 +54,29 @@ elevator.openDoors();
 
 ### 演示类（`*Demo`）
 
-- 类名以 `Demo` 结尾，实现 `DemoCase` 接口。
+- 类名以 `Demo` 结尾，实现 `PlaygroundCase` 接口。
 - 类必须 public、非抽象、非接口，有 public 无参构造，且为顶层类（内部类不被扫描）。
 - `pattern()` 返回 `I18nMessages` 中的 `PAT_*` 常量。
 - `caseNames()` 返回中英文显示名映射。
-- `run()` 编写演示逻辑，用 `System.out` 输出（由 GUI 捕获展示）。
+- `inputs()` 声明可交互的输入项，无参数时返回空列表。
+- `run(Map<String, String> values)` 编写演示逻辑，用 `System.out` 输出（由 GUI 捕获展示）。
 
 ```java
-public class LightControlDemo implements DemoCase {
-    @Override public I18nMessages pattern() { return PAT_COMMAND; }
+public class OfficeSuiteDemo implements PlaygroundCase {
+    @Override public I18nMessages pattern() { return PAT_ABSTRACT_FACTORY; }
     @Override public Map<Locale, String> caseNames() {
-        return Map.of(Locale.ENGLISH, "Light Switch", Locale.SIMPLIFIED_CHINESE, "灯光控制");
+        return Map.of(Locale.ENGLISH, "Office Suite", Locale.SIMPLIFIED_CHINESE, "办公套件");
     }
-    @Override public void run() {
+    @Override public List<PlaygroundInput> inputs() {
+        return List.of(new PlaygroundInput(
+                "platform",
+                Map.of(Locale.ENGLISH, "Platform", Locale.SIMPLIFIED_CHINESE, "平台"),
+                PlaygroundInput.Type.CHOICE,
+                List.of("Windows", "Linux"),
+                "Windows"));
+    }
+    @Override public void run(Map<String, String> values) {
+        String platform = values.getOrDefault("platform", "Windows");
         // 演示逻辑
     }
 }
@@ -87,7 +97,7 @@ public class LightControlDemo implements DemoCase {
 
 1. 新建子包 `com.zhuzz.design.patternz.<模式名>/<案例名>/`。
 2. 编写模式相关类（一个类型一个文件）。
-3. 编写 `<案例名>Demo` 类，实现 `DemoCase`（满足自动发现约束）。
+3. 编写 `<案例名>Demo` 类，实现 `PlaygroundCase`（满足自动发现约束）。
 4. 添加 `README.md` 与 `README_zh.md`。
 5. 在 `design-patternz/` 下执行 `.\mvnw.cmd compile` 验证。
 
