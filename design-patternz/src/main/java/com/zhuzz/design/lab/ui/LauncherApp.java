@@ -5,6 +5,7 @@ import com.zhuzz.design.lab.DemoRegistry;
 import com.zhuzz.design.lab.OutputCapture;
 import com.zhuzz.design.lab.ReadmeRenderer;
 import com.zhuzz.design.lab.i18n.I18n;
+import com.zhuzz.design.lab.i18n.I18nMessages;
 import com.zhuzz.design.lab.playground.PlaygroundCase;
 
 import javax.swing.BorderFactory;
@@ -72,7 +73,7 @@ public class LauncherApp extends JFrame {
     private void initComponents() {
         add(buildHeader(), BorderLayout.NORTH);
 
-        caseTreePanel = new CaseTreePanel(this::onCaseSelected);
+        caseTreePanel = new CaseTreePanel(this::onCaseSelected, this::onPatternSelected);
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, buildLeftPanel(), buildRightPanel());
         splitPane.setDividerLocation(260);
         add(splitPane, BorderLayout.CENTER);
@@ -179,6 +180,13 @@ public class LauncherApp extends JFrame {
         if (demo != null) {
             showReadme(demo);
         }
+    }
+
+    // 选中模式变化：展示该模式包根目录的模式级 README
+    // Pattern selection changed: show the pattern-level README in the pattern's root package
+    private void onPatternSelected(I18nMessages pattern) {
+        if (pattern == null) return;
+        readmeView.showHtml(ReadmeRenderer.renderPattern(pattern, I18n.getCurrentLocale()));
     }
 
     private void runSelected() {

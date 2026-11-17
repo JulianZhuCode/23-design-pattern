@@ -1,5 +1,6 @@
 package com.zhuzz.design.lab;
 
+import com.zhuzz.design.lab.i18n.I18nMessages;
 import org.commonmark.Extension;
 import org.commonmark.ext.gfm.tables.TablesExtension;
 import org.commonmark.node.AbstractVisitor;
@@ -49,11 +50,41 @@ public final class ReadmeRenderer {
      * Renders the README for the given locale; returns null if absent.
      */
     public static String render(DemoCase demo, Locale locale) {
-        String markdown = load(demo, locale);
+        return renderMarkdown(load(demo.getClass(), locale));
+    }
+
+    /**
+     * 按语言渲染指定模式包根目录的模式级 README 为 HTML；无 README 时返回 null。
+     * 通过该模式下的任意案例反推模式包路径（案例包名去掉最后一段）。
+     * Renders the pattern-level README under the pattern's root package for the given locale;
+     * returns null if absent. The pattern package path is derived from any case of the pattern.
+     */
+    public static String renderPattern(I18nMessages pattern, Locale locale) {
+        DemoCase demo = firstCaseOf(pattern);
+        if (demo == null) return null;
+        // 案例包名 com.zhuzz.design.patternz.<模式>.<案例>，模式包为去掉最后一段
+        // Case package is ...<pattern>.<case>; the pattern package drops the last segment
+        String pkg = demo.getClass().getPackageName();
+        int idx = pkg.lastIndexOf('.');
+        String patternPkg = idx < 0 ? pkg : pkg.substring(0, idx);
+        return renderMarkdown(loadFromPath(demo.getClass().getClassLoader(), patternPkg.replace('.', '/'), locale));
+    }
+
+    private static String renderMarkdown(String markdown) {
         if (markdown == null) return null;
         Node document = PARSER.parse(markdown);
         rewriteMermaidBlocks(document);
         return wrapHtml(RENDERER.render(document));
+    }
+
+    private static DemoCase firstCaseOf(I18nMessages pattern) {
+        for (var patternMap : DemoRegistry.registry.values()) {
+            List<DemoCase> cases = patternMap.get(pattern);
+            if (cases != null && !cases.isEmpty()) {
+                return cases.get(0);
+            }
+        }
+        return null;
     }
 
     /**
@@ -91,16 +122,18 @@ public final class ReadmeRenderer {
         return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;");
     }
 
-    private static String load(DemoCase demo, Locale locale) {
-        String pkg = demo.getClass().getPackageName().replace('.', '/');
-        ClassLoader cl = demo.getClass().getClassLoader();
-        // 中文优先 README_zh.md，回退 README.md
-        // Prefer README_zh.md for Chinese, fall back to README.md
+    private static String load(Class<?> type, Locale locale) {
+        return loadFromPath(type.getClassLoader(), type.getPackageName().replace('.', '/'), locale);
+    }
+
+    // 按包路径定位 README：中文优先 README_zh.md，回退 README.md
+    // Loads README by package path: prefer README_zh.md for Chinese, fall back to README.md
+    private static String loadFromPath(ClassLoader cl, String pkgPath, Locale locale) {
         if ("zh".equals(locale.getLanguage())) {
-            String localized = read(cl, pkg + "/README_zh.md");
+            String localized = read(cl, pkgPath + "/README_zh.md");
             if (localized != null) return localized;
         }
-        return read(cl, pkg + "/README.md");
+        return read(cl, pkgPath + "/README.md");
     }
 
     private static String read(ClassLoader cl, String path) {

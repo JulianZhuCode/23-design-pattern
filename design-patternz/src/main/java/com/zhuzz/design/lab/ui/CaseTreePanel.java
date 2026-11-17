@@ -30,16 +30,21 @@ public class CaseTreePanel extends JPanel {
 
     private final JTree tree;
     private final Consumer<DemoCase> onCaseSelected;
+    private final Consumer<I18nMessages> onPatternSelected;
     // 叶节点（案例）集合；据此判断选中节点是否为可运行的案例节点
     // Set of leaf nodes (cases); used to decide whether the selected node is a runnable case
     private final Set<DefaultMutableTreeNode> leafNodes = new HashSet<>();
+    // 模式节点集合；据此判断选中节点是否为模式节点（展示模式级 README）
+    // Set of pattern nodes; used to decide whether the selected node is a pattern (shows pattern-level README)
+    private final Set<DefaultMutableTreeNode> patternNodes = new HashSet<>();
     // 重建树时抑制选中事件，避免重建过程中触发多次回调
     // Suppresses selection events while rebuilding to avoid duplicate callbacks
     private boolean rebuilding;
 
-    public CaseTreePanel(Consumer<DemoCase> onCaseSelected) {
+    public CaseTreePanel(Consumer<DemoCase> onCaseSelected, Consumer<I18nMessages> onPatternSelected) {
         super(new BorderLayout());
         this.onCaseSelected = onCaseSelected;
+        this.onPatternSelected = onPatternSelected;
 
         DefaultMutableTreeNode placeholder = new DefaultMutableTreeNode();
         tree = new JTree(placeholder);
@@ -69,11 +74,13 @@ public class CaseTreePanel extends JPanel {
 
             DefaultMutableTreeNode root = new DefaultMutableTreeNode();
             leafNodes.clear();
+            patternNodes.clear();
 
             for (var catEntry : DemoRegistry.registry.entrySet()) {
                 DefaultMutableTreeNode catNode = new DefaultMutableTreeNode(catEntry.getKey());
                 for (var patEntry : catEntry.getValue().entrySet()) {
                     DefaultMutableTreeNode patNode = new DefaultMutableTreeNode(patEntry.getKey());
+                    patternNodes.add(patNode);
                     for (DemoCase item : patEntry.getValue()) {
                         DefaultMutableTreeNode caseNode = new DefaultMutableTreeNode(item);
                         patNode.add(caseNode);
@@ -109,9 +116,24 @@ public class CaseTreePanel extends JPanel {
         return null;
     }
 
+    /**
+     * 当前选中的模式；未选中或选中非模式节点时返回 null。
+     * The currently selected pattern, or null when nothing / a non-pattern node is selected.
+     */
+    public I18nMessages getSelectedPattern() {
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+        if (node != null && patternNodes.contains(node)) {
+            return (I18nMessages) node.getUserObject();
+        }
+        return null;
+    }
+
     private void fireSelection() {
         if (onCaseSelected != null) {
             onCaseSelected.accept(getSelectedCase());
+        }
+        if (onPatternSelected != null) {
+            onPatternSelected.accept(getSelectedPattern());
         }
     }
 
@@ -120,7 +142,7 @@ public class CaseTreePanel extends JPanel {
     private String saveSelectedPath() {
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
         if (node == null) return null;
-        if (leafNodes.contains(node)) {
+        if (leafNodes.contains(node) || patternNodes.contains(node)) {
             return buildNodePath(node);
         }
         return null;
@@ -147,6 +169,12 @@ public class CaseTreePanel extends JPanel {
         for (DefaultMutableTreeNode leaf : leafNodes) {
             if (buildNodePath(leaf).equals(path)) {
                 tree.setSelectionPath(new TreePath(leaf.getPath()));
+                return;
+            }
+        }
+        for (DefaultMutableTreeNode pattern : patternNodes) {
+            if (buildNodePath(pattern).equals(path)) {
+                tree.setSelectionPath(new TreePath(pattern.getPath()));
                 return;
             }
         }
