@@ -55,8 +55,17 @@ public class CalculatorDemo implements PlaygroundCase {
         } else {
             calculator.setOperation(new Addition());
         }
-        int a = Integer.parseInt(values.getOrDefault("a", "5"));
-        int b = Integer.parseInt(values.getOrDefault("b", "3"));
+        // 操作数必须为整数，非法输入给出友好提示并中止
+        // Operands must be integers; abort with a friendly hint on invalid input
+        int a;
+        int b;
+        try {
+            a = Integer.parseInt(values.getOrDefault("a", "5"));
+            b = Integer.parseInt(values.getOrDefault("b", "3"));
+        } catch (NumberFormatException e) {
+            Messages.println("calculator.invalidOperand");
+            return;
+        }
         int result = calculator.performOperation(a, b);
         Messages.println("calculator.result", op, result);
     }

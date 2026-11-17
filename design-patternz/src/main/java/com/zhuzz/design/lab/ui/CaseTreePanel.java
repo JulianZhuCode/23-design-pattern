@@ -13,8 +13,8 @@ import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Consumer;
 
 /**
@@ -30,9 +30,9 @@ public class CaseTreePanel extends JPanel {
 
     private final JTree tree;
     private final Consumer<DemoCase> onCaseSelected;
-    // 叶节点（案例）到运行动作的映射；据此判断选中节点是否可运行
-    // Maps leaf nodes (cases) to their run actions
-    private final Map<DefaultMutableTreeNode, Runnable> leafRunners = new HashMap<>();
+    // 叶节点（案例）集合；据此判断选中节点是否为可运行的案例节点
+    // Set of leaf nodes (cases); used to decide whether the selected node is a runnable case
+    private final Set<DefaultMutableTreeNode> leafNodes = new HashSet<>();
     // 重建树时抑制选中事件，避免重建过程中触发多次回调
     // Suppresses selection events while rebuilding to avoid duplicate callbacks
     private boolean rebuilding;
@@ -68,7 +68,7 @@ public class CaseTreePanel extends JPanel {
             String selectedPath = saveSelectedPath();
 
             DefaultMutableTreeNode root = new DefaultMutableTreeNode();
-            leafRunners.clear();
+            leafNodes.clear();
 
             for (var catEntry : DemoRegistry.registry.entrySet()) {
                 DefaultMutableTreeNode catNode = new DefaultMutableTreeNode(catEntry.getKey());
@@ -77,7 +77,7 @@ public class CaseTreePanel extends JPanel {
                     for (DemoCase item : patEntry.getValue()) {
                         DefaultMutableTreeNode caseNode = new DefaultMutableTreeNode(item);
                         patNode.add(caseNode);
-                        leafRunners.put(caseNode, item::run);
+                        leafNodes.add(caseNode);
                     }
                     catNode.add(patNode);
                 }
@@ -103,7 +103,7 @@ public class CaseTreePanel extends JPanel {
      */
     public DemoCase getSelectedCase() {
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
-        if (node != null && leafRunners.containsKey(node)) {
+        if (node != null && leafNodes.contains(node)) {
             return (DemoCase) node.getUserObject();
         }
         return null;
@@ -120,7 +120,7 @@ public class CaseTreePanel extends JPanel {
     private String saveSelectedPath() {
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
         if (node == null) return null;
-        if (leafRunners.containsKey(node)) {
+        if (leafNodes.contains(node)) {
             return buildNodePath(node);
         }
         return null;
@@ -144,9 +144,9 @@ public class CaseTreePanel extends JPanel {
     // Restores the previously selected case node by path
     private void restoreSelectedPath(String path) {
         if (path == null) return;
-        for (var entry : leafRunners.entrySet()) {
-            if (buildNodePath(entry.getKey()).equals(path)) {
-                tree.setSelectionPath(new TreePath(entry.getKey().getPath()));
+        for (DefaultMutableTreeNode leaf : leafNodes) {
+            if (buildNodePath(leaf).equals(path)) {
+                tree.setSelectionPath(new TreePath(leaf.getPath()));
                 return;
             }
         }

@@ -3,6 +3,7 @@ package com.zhuzz.design.patternz.observer.numberobserver;
 import com.zhuzz.design.lab.playground.PlaygroundCase;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
+import com.zhuzz.design.lab.i18n.Messages;
 
 import java.util.List;
 import java.util.Locale;
@@ -39,7 +40,13 @@ public class NumberObserverDemo implements PlaygroundCase {
 
         // 按用户输入的数字更新状态，观察观察者如何收到通知
         // set the user-provided number and see observers get notified
-        int number = Integer.parseInt(values.getOrDefault("number", "10"));
+        int number;
+        try {
+            number = Integer.parseInt(values.getOrDefault("number", "10"));
+        } catch (NumberFormatException e) {
+            Messages.println("observer.invalidNumber");
+            return;
+        }
         subject.setState(number);
     }
 }

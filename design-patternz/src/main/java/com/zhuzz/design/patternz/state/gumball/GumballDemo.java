@@ -3,6 +3,7 @@ package com.zhuzz.design.patternz.state.gumball;
 import com.zhuzz.design.lab.playground.PlaygroundCase;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
+import com.zhuzz.design.lab.i18n.Messages;
 
 import java.util.List;
 import java.util.Locale;
@@ -27,7 +28,13 @@ public class GumballDemo implements PlaygroundCase {
     @Override public void run(Map<String, String> values) {
         // 按用户输入的初始糖果数量创建机器，观察状态随操作流转
         // create the machine with the user-provided candy count and watch states transition
-        int count = Integer.parseInt(values.getOrDefault("count", "2"));
+        int count;
+        try {
+            count = Integer.parseInt(values.getOrDefault("count", "2"));
+        } catch (NumberFormatException e) {
+            Messages.println("gumball.invalidCount");
+            return;
+        }
         GumballMachine machine = new GumballMachine(count);
 
         machine.insertQuarter();

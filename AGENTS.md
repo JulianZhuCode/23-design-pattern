@@ -4,9 +4,9 @@ Java 设计模式学习项目（GoF 23 种设计模式）。本文件是项目�
 
 ## 项目概览
 
-- 技术栈：Java 21、Maven；无第三方依赖、无单元测试。
+- 技术栈：Java 21、Maven；依赖 commonmark（含 GFM tables 扩展）与 OpenJFX（base/graphics/controls/media/web/swing）用于 README 渲染；无单元测试。
 - 代码目录：`design-patternz/`（Maven 项目根）。
-- 程序入口：`com.zhuzz.design.lab.LauncherApp`（Swing GUI）。
+- 程序入口：`com.zhuzz.design.lab.Launcher`（Swing GUI，主窗口为 `com.zhuzz.design.lab.ui.LauncherApp`）。
 - 构建方式：Maven Wrapper（`mvnw`）。在 `design-patternz/` 下执行 `.\mvnw.cmd compile`；要求 `JAVA_HOME` 指向 JDK 21。
 
 核心机制：

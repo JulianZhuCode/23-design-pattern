@@ -1,6 +1,7 @@
 package com.zhuzz.design.patternz.chainofresponsibility.reimbursement;
 
 import com.zhuzz.design.lab.i18n.I18nMessages;
+import com.zhuzz.design.lab.i18n.Messages;
 import com.zhuzz.design.lab.playground.PlaygroundCase;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 
@@ -38,7 +39,13 @@ public class ReimbursementDemo implements PlaygroundCase {
 
         // 按用户输入的金额构造一条报销请求，观察审批链的流转
         // build a request from the user-provided amount to observe the chain flow
-        double amount = Double.parseDouble(values.getOrDefault("amount", "800"));
+        double amount;
+        try {
+            amount = Double.parseDouble(values.getOrDefault("amount", "800"));
+        } catch (NumberFormatException e) {
+            Messages.println("reimbursement.invalidAmount");
+            return;
+        }
         ReimbursementRequest request = new ReimbursementRequest(amount, "沙盒报销申请");
         departmentHead.handleRequest(request);
     }

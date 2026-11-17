@@ -3,6 +3,7 @@ package com.zhuzz.design.patternz.observer.weather;
 import com.zhuzz.design.lab.playground.PlaygroundCase;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
+import com.zhuzz.design.lab.i18n.Messages;
 
 import java.util.List;
 import java.util.Locale;
@@ -35,7 +36,13 @@ public class WeatherDemo implements PlaygroundCase {
 
         // 按用户输入的温度发布一次测量，观察观察者如何响应
         // publish one measurement at the user-provided temperature to see observers react
-        int temperature = Integer.parseInt(values.getOrDefault("temperature", "25"));
+        int temperature;
+        try {
+            temperature = Integer.parseInt(values.getOrDefault("temperature", "25"));
+        } catch (NumberFormatException e) {
+            Messages.println("weather.invalidTemperature");
+            return;
+        }
         station.setMeasurements(temperature, 60);
     }
 }

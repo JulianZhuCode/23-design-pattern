@@ -1,6 +1,7 @@
 package com.zhuzz.design.patternz.strategy.payment;
 
 import com.zhuzz.design.lab.i18n.I18nMessages;
+import com.zhuzz.design.lab.i18n.Messages;
 import com.zhuzz.design.lab.playground.PlaygroundCase;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 
@@ -44,7 +45,15 @@ public class PaymentDemo implements PlaygroundCase {
         } else {
             cart.setPaymentStrategy(new CreditCardPayment("1234-5678"));
         }
-        double amount = Double.parseDouble(values.getOrDefault("amount", "120.50"));
+        // 金额必须为数字，非法输入给出友好提示并中止
+        // Amount must be numeric; abort with a friendly hint on invalid input
+        double amount;
+        try {
+            amount = Double.parseDouble(values.getOrDefault("amount", "120.50"));
+        } catch (NumberFormatException e) {
+            Messages.println("payment.invalidAmount");
+            return;
+        }
         cart.checkout(amount);
     }
 }
