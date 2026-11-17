@@ -86,11 +86,18 @@ public class OfficeSuiteDemo implements PlaygroundCase {
 ### 文件组织
 
 - 一个类型一个文件；模式相关类与演示类放在同一子包。
-- 每个案例子包附带 `README.md`（英文）与 `README_zh.md`（中文），统一包含：整体概览、场景描述、设计模式、结构、设计理念。
 
 ### 场景设计
 
 - 示例应结合真实世界中常见或好理解的场景（如灯光控制、电梯、文件系统等），便于学习者快速理解模式用途。
+
+## 文档（README）规范
+
+- 每个案例子包附带 `README.md`（英文）与 `README_zh.md`（中文），统一结构：整体概览（Big Picture）→ 场景描述（Scenario）→ 设计模式（Design Pattern）→ 结构（Mermaid 类图 + 角色表）→ 设计理念（Design Rationale）。
+- **新增案例时，需同步在该模式包根目录的 `README.md` 与 `README_zh.md`「项目中的案例」小节添加跳转链接**：
+  - 中文版 `README_zh.md` 链接到 `<案例名>/README_zh.md`；
+  - 英文版 `README.md` 链接到 `<案例名>/README.md`。
+  - 链接为纯相对路径，供 GitHub 浏览使用，阅读器内不做跳转处理。
 
 ## 输出国际化（i18n）
 
@@ -117,18 +124,12 @@ tower.clearToLand=塔台：{0} 获准降落。
 Messages.println("tower.clearToLand", plane.getName());
 ```
 
-## 新增案例 / 模式
-
-在现有模式下新增案例：
+## 新增案例
 
 1. 新建子包 `com.zhuzz.design.patternz.<模式名>/<案例名>/`。
 2. 编写模式相关类（一个类型一个文件）。
 3. 编写 `<案例名>Demo` 类，实现 `PlaygroundCase`（满足自动发现约束）。
-4. 添加 `README.md` 与 `README_zh.md`。
-5. 如案例有运行输出，添加 `output_en.properties` 与 `output_zh.properties`，并用 `Messages.println` 输出（见「输出国际化」）。
-6. 在 `design-patternz/` 下执行 `.\mvnw.cmd compile` 验证。
-
-新增全新模式（额外步骤）：
-
-1. 在 `I18nMessages` 中新增 `PAT_*` 常量并指定分类（创建型/结构型/行为型），按 GoF 经典顺序声明（声明顺序决定界面展示顺序）。
-2. 在 `messages_en.properties`、`messages_zh.properties` 补充对应翻译。
+4. 添加案例级 `README.md` 与 `README_zh.md`（见「文档（README）规范」）。
+5. 在对应模式包根目录的 `README.md` 与 `README_zh.md`「项目中的案例」中补充该案例的跳转链接（见「文档（README）规范」）。
+6. 如案例有运行输出，添加 `output_en.properties` 与 `output_zh.properties`，并用 `Messages.println` 输出（见「输出国际化」）。
+7. 在 `design-patternz/` 下执行 `.\mvnw.cmd compile` 验证。
