@@ -15,6 +15,7 @@
         <maven.compiler.target>21</maven.compiler.target>
         <commonmark.version>0.23.0</commonmark.version>
         <javafx.version>21.0.2</javafx.version>
+        <junit.version>5.11.3</junit.version>
         <!-- OpenJFX 平台 classifier：无 classifier 的 jar 是空占位，类与本地库都在 classifier jar 中
              OpenJFX platform classifier: classifier-less jars are empty placeholders -->
         <javafx.classifier>win</javafx.classifier>
@@ -76,10 +77,21 @@
             <version>${javafx.version}</version>
             <classifier>${javafx.classifier}</classifier>
         </dependency>
+
+        <!-- 单元测试：JUnit 5
+             Unit tests: JUnit 5 -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <!-- 依据操作系统切换 JavaFX 平台 classifier（Windows 用默认值 win）
-         Selects the JavaFX platform classifier by OS (Windows uses the default 'win') -->
+         按 os.arch 细分 Mac：aarch64 → mac-aarch64，x86_64 → mac
+         Selects the JavaFX platform classifier by OS (Windows uses the default 'win')
+         Mac is split by os.arch: aarch64 → mac-aarch64, x86_64 → mac -->
     <profiles>
         <profile>
             <id>javafx-linux</id>
@@ -94,14 +106,27 @@
             </properties>
         </profile>
         <profile>
-            <id>javafx-mac</id>
+            <id>javafx-mac-x86_64</id>
             <activation>
                 <os>
                     <family>mac</family>
+                    <arch>x86_64</arch>
                 </os>
             </activation>
             <properties>
                 <javafx.classifier>mac</javafx.classifier>
+            </properties>
+        </profile>
+        <profile>
+            <id>javafx-mac-aarch64</id>
+            <activation>
+                <os>
+                    <family>mac</family>
+                    <arch>aarch64</arch>
+                </os>
+            </activation>
+            <properties>
+                <javafx.classifier>mac-aarch64</javafx.classifier>
             </properties>
         </profile>
     </profiles>
@@ -124,5 +149,14 @@
                 <directory>src/main/resources</directory>
             </resource>
         </resources>
+        <plugins>
+            <!-- 运行 JUnit 5 单元测试
+                 Runs JUnit 5 unit tests -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.2</version>
+            </plugin>
+        </plugins>
     </build>
 </project>
