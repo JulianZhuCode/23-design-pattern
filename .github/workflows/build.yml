@@ -26,4 +26,4 @@ jobs:
       - name: Compile and test with Maven Wrapper
         shell: bash
         working-directory: design-patternz
-        run: ./mvnw clean test
+        run: bash ./mvnw clean test
