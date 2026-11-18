@@ -27,3 +27,6 @@ target/
 
 # IDE
 .idea/
+
+# Temporary files (not to be committed)
+tmp/
