@@ -58,7 +58,7 @@ public class LauncherApp extends JFrame {
     private boolean suppressingLangEvent;
 
     public LauncherApp() {
-        setTitle("🧩 " + I18n.get(WINDOW_TITLE));
+        setTitle(I18n.get(WINDOW_TITLE));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(900, 600);
         setLocationRelativeTo(null);
@@ -91,7 +91,7 @@ public class LauncherApp extends JFrame {
     // Header: title + language selector
     private JPanel buildHeader() {
         JPanel header = new JPanel(new BorderLayout());
-        titleLabel = new JLabel("🧩 " + I18n.get(WINDOW_TITLE));
+        titleLabel = new JLabel(I18n.get(WINDOW_TITLE));
         titleLabel.setFont(new Font(null, Font.BOLD, 14));
         header.setBorder(BorderFactory.createEmptyBorder(6, 10, 6, 10));
         header.add(titleLabel, BorderLayout.WEST);
@@ -258,8 +258,8 @@ public class LauncherApp extends JFrame {
     // 集中刷新所有依赖当前语言的静态文案
     // Refreshes all static texts that depend on the current locale in one place
     private void refreshLocaleTexts() {
-        setTitle("🧩 " + I18n.get(WINDOW_TITLE));
-        titleLabel.setText("🧩 " + I18n.get(WINDOW_TITLE));
+        setTitle(I18n.get(WINDOW_TITLE));
+        titleLabel.setText(I18n.get(WINDOW_TITLE));
         runBtn.setText(I18n.get(BTN_RUN));
         clearBtn.setText(I18n.get(BTN_CLEAR));
         readmeLabel.setText("=== " + I18n.get(TAB_README) + " ===");
