@@ -8,6 +8,11 @@
     <artifactId>design-patternz</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <!-- 项目元数据（用于 Maven Central 检索与 SEO）
+         Project metadata (for Maven Central indexing and SEO) -->
+    <name>23 Design Patterns (Java)</name>
+    <description>Interactive Java 21 lab for all 23 GoF design patterns: documentation, runnable cases and a graphical interface.</description>
+    <url>https://github.com/JulianZhuCode/23-design-pattern</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
