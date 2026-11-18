@@ -47,7 +47,7 @@ Cases are discovered automatically at startup — no manual registration is requ
 
 ## Conventions
 
-- Code comments are bilingual (Chinese followed by English) to help learners.
+- Code comments: **English is required**. Additional translations in other languages (Chinese, Japanese, Spanish, etc.) are appreciated and help learners from different backgrounds, but are not mandatory.
 - Keep examples focused on realistic, easy-to-understand scenarios.
 
 Thank you for helping improve this project!
