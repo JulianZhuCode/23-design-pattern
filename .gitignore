@@ -30,3 +30,6 @@ target/
 
 # Temporary files (not to be committed)
 tmp/
+
+# Local AI agent instructions (personal, not shared)
+AGENTS.md
