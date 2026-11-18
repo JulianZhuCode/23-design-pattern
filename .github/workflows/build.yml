@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-latest, ubuntu-latest, macos-latest, macos-14]
+        os: [windows-latest, ubuntu-latest, macos-latest, macos-15-intel]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
