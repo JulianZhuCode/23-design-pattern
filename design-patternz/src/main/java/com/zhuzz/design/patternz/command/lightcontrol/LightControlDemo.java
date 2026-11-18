@@ -1,6 +1,6 @@
 package com.zhuzz.design.patternz.command.lightcontrol;
 
-import com.zhuzz.design.lab.playground.PlaygroundCase;
+import com.zhuzz.design.lab.DemoSupport;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
 
@@ -14,7 +14,7 @@ import static com.zhuzz.design.lab.i18n.I18nMessages.*;
  * 命令模式演示：遥控器开灯/关灯
  * Command demo: remote light on/off
  */
-public class LightControlDemo implements PlaygroundCase {
+public class LightControlDemo extends DemoSupport {
     @Override public I18nMessages pattern() { return PAT_COMMAND; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Light Switch", Locale.SIMPLIFIED_CHINESE, "灯光控制");

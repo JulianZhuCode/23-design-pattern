@@ -64,6 +64,21 @@ public class I18n {
         }
     }
 
+    /**
+     * 按 Locale 切换语言，匹配语言代码（如 en、zh）；找不到对应语言时保持当前语言不变。
+     * Switches language by Locale (matching the language code, e.g. en, zh);
+     * leaves the current language unchanged if no matching provider is found.
+     */
+    public static void switchTo(Locale locale) {
+        String lang = locale.getLanguage();
+        for (int i = 0; i < providers.size(); i++) {
+            if (providers.get(i).locale().getLanguage().equals(lang)) {
+                switchTo(i);
+                return;
+            }
+        }
+    }
+
     public static String getCurrentLanguageName() {
         return providers.get(currentIndex).getLanguageName();
     }

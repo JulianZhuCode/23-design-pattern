@@ -1,6 +1,6 @@
 package com.zhuzz.design.patternz.iterator.collection;
 
-import com.zhuzz.design.lab.playground.PlaygroundCase;
+import com.zhuzz.design.lab.DemoSupport;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
 import com.zhuzz.design.lab.i18n.Messages;
@@ -15,7 +15,7 @@ import static com.zhuzz.design.lab.i18n.I18nMessages.*;
  * 迭代器模式演示：不暴露内部结构地遍历集合
  * Iterator demo: traverse without exposing internals
  */
-public class CollectionIteratorDemo implements PlaygroundCase {
+public class CollectionIteratorDemo extends DemoSupport {
     @Override public I18nMessages pattern() { return PAT_ITERATOR; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Collection Iterator", Locale.SIMPLIFIED_CHINESE, "集合遍历");

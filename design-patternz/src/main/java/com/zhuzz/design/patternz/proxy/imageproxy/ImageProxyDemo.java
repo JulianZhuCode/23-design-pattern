@@ -1,6 +1,6 @@
 package com.zhuzz.design.patternz.proxy.imageproxy;
 
-import com.zhuzz.design.lab.playground.PlaygroundCase;
+import com.zhuzz.design.lab.DemoSupport;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
 
@@ -14,7 +14,7 @@ import static com.zhuzz.design.lab.i18n.I18nMessages.*;
  * 代理模式演示：延迟加载图片
  * Proxy demo: lazy image loading
  */
-public class ImageProxyDemo implements PlaygroundCase {
+public class ImageProxyDemo extends DemoSupport {
     @Override public I18nMessages pattern() { return PAT_PROXY; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Lazy Image", Locale.SIMPLIFIED_CHINESE, "图片延迟加载");

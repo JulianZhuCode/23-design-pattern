@@ -1,6 +1,6 @@
 package com.zhuzz.design.patternz.observer.numberobserver;
 
-import com.zhuzz.design.lab.playground.PlaygroundCase;
+import com.zhuzz.design.lab.DemoSupport;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
 import com.zhuzz.design.lab.i18n.Messages;
@@ -15,7 +15,7 @@ import static com.zhuzz.design.lab.i18n.I18nMessages.*;
  * 观察者模式演示：数字变化时通知观察者
  * Observer demo: notify on number change
  */
-public class NumberObserverDemo implements PlaygroundCase {
+public class NumberObserverDemo extends DemoSupport {
     @Override public I18nMessages pattern() { return PAT_OBSERVER; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Number Observer", Locale.SIMPLIFIED_CHINESE, "数字观察");

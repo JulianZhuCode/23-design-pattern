@@ -2,7 +2,7 @@ package com.zhuzz.design.patternz.strategy.payment;
 
 import com.zhuzz.design.lab.i18n.I18nMessages;
 import com.zhuzz.design.lab.i18n.Messages;
-import com.zhuzz.design.lab.playground.PlaygroundCase;
+import com.zhuzz.design.lab.DemoSupport;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
-public class PaymentDemo implements PlaygroundCase {
+public class PaymentDemo extends DemoSupport {
     @Override public I18nMessages pattern() { return PAT_STRATEGY; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Payment", Locale.SIMPLIFIED_CHINESE, "支付方式");

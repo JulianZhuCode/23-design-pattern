@@ -12,7 +12,7 @@ Java 设计模式学习项目（GoF 23 种设计模式）。本文件是项目�
 核心机制：
 
 - 框架代码（`DemoCase`、`DemoRegistry`、`LauncherApp`、`I18n` 等）位于 `com.zhuzz.design.lab` 包。
-- 每个设计模式案例是一个实现 `PlaygroundCase` 接口的 `*Demo` 类，放在 `com.zhuzz.design.patternz` 包（或其子包）下。
+- 每个设计模式案例是一个继承 `com.zhuzz.design.lab.DemoSupport` 的 `*Demo` 类（`DemoSupport` 实现了 `PlaygroundCase` 接口），放在 `com.zhuzz.design.patternz` 包（或其子包）下。
 - `DemoRegistry` 启动时扫描 `patternz` 包，自动发现全部案例，**无需注册**。
 - `I18nMessages` 枚举 + `messages_en.properties` / `messages_zh.properties` 提供中英文界面文案。
 - 案例运行输出由各子包内的 `output_en.properties` / `output_zh.properties` + `Messages` 提供（见「输出国际化」）。
@@ -55,7 +55,7 @@ elevator.openDoors();
 
 ### 演示类（`*Demo`）
 
-- 类名以 `Demo` 结尾，实现 `PlaygroundCase` 接口。
+- 类名以 `Demo` 结尾，继承 `com.zhuzz.design.lab.DemoSupport`（该抽象类实现了 `PlaygroundCase` 接口，并提供统一的 `main` 方法，使案例可独立运行）。
 - 类必须 public、非抽象、非接口，有 public 无参构造，且为顶层类（内部类不被扫描）。
 - `pattern()` 返回 `I18nMessages` 中的 `PAT_*` 常量。
 - `caseNames()` 返回中英文显示名映射。
@@ -63,7 +63,7 @@ elevator.openDoors();
 - `run(Map<String, String> values)` 编写演示逻辑，输出统一用 `Messages.println(key, args...)`（由 GUI 捕获展示），文案放入各包的 `output_*.properties`。
 
 ```java
-public class OfficeSuiteDemo implements PlaygroundCase {
+public class OfficeSuiteDemo extends DemoSupport {
     @Override public I18nMessages pattern() { return PAT_ABSTRACT_FACTORY; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Office Suite", Locale.SIMPLIFIED_CHINESE, "办公套件");
@@ -128,7 +128,7 @@ Messages.println("tower.clearToLand", plane.getName());
 
 1. 新建子包 `com.zhuzz.design.patternz.<模式名>/<案例名>/`。
 2. 编写模式相关类（一个类型一个文件）。
-3. 编写 `<案例名>Demo` 类，实现 `PlaygroundCase`（满足自动发现约束）。
+3. 编写 `<案例名>Demo` 类，继承 `com.zhuzz.design.lab.DemoSupport`（满足自动发现约束，同时支持独立运行）。
 4. 添加案例级 `README.md` 与 `README_zh.md`（见「文档（README）规范」）。
 5. 在对应模式包根目录的 `README.md` 与 `README_zh.md`「项目中的案例」中补充该案例的跳转链接（见「文档（README）规范」）。
 6. 如案例有运行输出，添加 `output_en.properties` 与 `output_zh.properties`，并用 `Messages.println` 输出（见「输出国际化」）。

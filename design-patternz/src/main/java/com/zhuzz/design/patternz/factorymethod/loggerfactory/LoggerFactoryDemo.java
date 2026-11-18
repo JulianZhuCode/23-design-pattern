@@ -1,6 +1,6 @@
 package com.zhuzz.design.patternz.factorymethod.loggerfactory;
 
-import com.zhuzz.design.lab.playground.PlaygroundCase;
+import com.zhuzz.design.lab.DemoSupport;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
 
@@ -10,7 +10,7 @@ import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
-public class LoggerFactoryDemo implements PlaygroundCase {
+public class LoggerFactoryDemo extends DemoSupport {
     @Override public I18nMessages pattern() { return PAT_FACTORY_METHOD; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Logger Factory", Locale.SIMPLIFIED_CHINESE, "日志工厂");

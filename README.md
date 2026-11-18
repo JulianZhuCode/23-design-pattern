@@ -58,6 +58,31 @@ Option 2 (command line; the exec plugin is downloaded on first use):
   -Dexec.mainClass=com.zhuzz.design.lab.Launcher
 ```
 
+Option 3 (run a single case directly, without the GUI):
+
+In IntelliJ IDEA, open any `*Demo` class and click the green run button next to the class name to run it directly. You can also pass arguments in the Run Configuration's "Program arguments" field, e.g. `--op=Multiplication --a=6 --b=7`.
+
+Or run it from the command line:
+
+```bash
+# Compile first
+.\mvnw.cmd clean compile
+
+# Run any case by its fully qualified class name
+java -cp target/classes com.zhuzz.design.patternz.decorator.datastream.DataStreamDemo
+
+# Pass inputs with --key=value or --key value; unprovided inputs use their defaults
+java -cp target/classes com.zhuzz.design.patternz.strategy.calculator.CalculatorDemo --op=Multiplication --a=6 --b=7
+
+# Switch the output language (en / zh)
+java -cp target/classes com.zhuzz.design.patternz.strategy.calculator.CalculatorDemo --op=Subtraction --a=10 --b=3 --lang=en
+
+# Show available inputs and choices
+java -cp target/classes com.zhuzz.design.patternz.strategy.payment.PaymentDemo --help
+```
+
+Every `*Demo` class extends `com.zhuzz.design.lab.DemoSupport`, which provides a shared `main` method, so any case can be launched standalone with `java <fully-qualified-class-name>`.
+
 ### Using the GUI
 
 - **Case tree (left)**: grouped by Creational / Structural / Behavioral, drill down to patterns and cases;

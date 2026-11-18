@@ -1,6 +1,6 @@
 package com.zhuzz.design.patternz.factorymethod.shapefactory;
 
-import com.zhuzz.design.lab.playground.PlaygroundCase;
+import com.zhuzz.design.lab.DemoSupport;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
 
@@ -10,7 +10,7 @@ import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
-public class ShapeFactoryDemo implements PlaygroundCase {
+public class ShapeFactoryDemo extends DemoSupport {
     @Override public I18nMessages pattern() { return PAT_FACTORY_METHOD; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Shape Factory", Locale.SIMPLIFIED_CHINESE, "图形工厂");

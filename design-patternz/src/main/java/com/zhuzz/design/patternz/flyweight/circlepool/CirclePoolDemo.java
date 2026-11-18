@@ -1,6 +1,6 @@
 package com.zhuzz.design.patternz.flyweight.circlepool;
 
-import com.zhuzz.design.lab.playground.PlaygroundCase;
+import com.zhuzz.design.lab.DemoSupport;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
 
@@ -14,7 +14,7 @@ import static com.zhuzz.design.lab.i18n.I18nMessages.*;
  * 享元模式演示：共享颜色相同的圆形实例
  * Flyweight demo: share circles of the same color
  */
-public class CirclePoolDemo implements PlaygroundCase {
+public class CirclePoolDemo extends DemoSupport {
     @Override public I18nMessages pattern() { return PAT_FLYWEIGHT; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Circle Pool", Locale.SIMPLIFIED_CHINESE, "圆形共享");

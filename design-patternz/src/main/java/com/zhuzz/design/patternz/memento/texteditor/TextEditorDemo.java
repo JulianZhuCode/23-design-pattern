@@ -1,6 +1,6 @@
 package com.zhuzz.design.patternz.memento.texteditor;
 
-import com.zhuzz.design.lab.playground.PlaygroundCase;
+import com.zhuzz.design.lab.DemoSupport;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
 import com.zhuzz.design.lab.i18n.Messages;
@@ -15,7 +15,7 @@ import static com.zhuzz.design.lab.i18n.I18nMessages.*;
  * 备忘录模式演示：文本编辑器的撤销/重做
  * Memento demo: text editor undo/redo
  */
-public class TextEditorDemo implements PlaygroundCase {
+public class TextEditorDemo extends DemoSupport {
     @Override public I18nMessages pattern() { return PAT_MEMENTO; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Text Editor", Locale.SIMPLIFIED_CHINESE, "文本编辑器");

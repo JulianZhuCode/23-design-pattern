@@ -2,7 +2,7 @@ package com.zhuzz.design.patternz.chainofresponsibility.reimbursement;
 
 import com.zhuzz.design.lab.i18n.I18nMessages;
 import com.zhuzz.design.lab.i18n.Messages;
-import com.zhuzz.design.lab.playground.PlaygroundCase;
+import com.zhuzz.design.lab.DemoSupport;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 
 import java.util.List;
@@ -15,7 +15,7 @@ import static com.zhuzz.design.lab.i18n.I18nMessages.*;
  * 责任链模式演示：报销按金额分级审批
  * Chain of Responsibility demo: tiered approval by amount
  */
-public class ReimbursementDemo implements PlaygroundCase {
+public class ReimbursementDemo extends DemoSupport {
     @Override public I18nMessages pattern() { return PAT_CHAIN_OF_RESPONSIBILITY; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Reimbursement", Locale.SIMPLIFIED_CHINESE, "报销审批");

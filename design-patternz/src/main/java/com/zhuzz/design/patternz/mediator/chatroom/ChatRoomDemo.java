@@ -1,6 +1,6 @@
 package com.zhuzz.design.patternz.mediator.chatroom;
 
-import com.zhuzz.design.lab.playground.PlaygroundCase;
+import com.zhuzz.design.lab.DemoSupport;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
 
@@ -14,7 +14,7 @@ import static com.zhuzz.design.lab.i18n.I18nMessages.*;
  * 中介者模式演示：用户通过聊天室互相发消息
  * Mediator demo: users chat via a room
  */
-public class ChatRoomDemo implements PlaygroundCase {
+public class ChatRoomDemo extends DemoSupport {
     @Override public I18nMessages pattern() { return PAT_MEDIATOR; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Chat Room", Locale.SIMPLIFIED_CHINESE, "聊天室");

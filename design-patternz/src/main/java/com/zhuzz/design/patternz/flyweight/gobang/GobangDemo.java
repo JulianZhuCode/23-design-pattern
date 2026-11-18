@@ -1,6 +1,6 @@
 package com.zhuzz.design.patternz.flyweight.gobang;
 
-import com.zhuzz.design.lab.playground.PlaygroundCase;
+import com.zhuzz.design.lab.DemoSupport;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
 import com.zhuzz.design.lab.i18n.Messages;
@@ -11,7 +11,7 @@ import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
-public class GobangDemo implements PlaygroundCase {
+public class GobangDemo extends DemoSupport {
     @Override public I18nMessages pattern() { return PAT_FLYWEIGHT; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Gobang Pieces", Locale.SIMPLIFIED_CHINESE, "五子棋棋子");

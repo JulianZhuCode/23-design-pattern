@@ -1,6 +1,6 @@
 package com.zhuzz.design.patternz.templatemethod.dataprocessor;
 
-import com.zhuzz.design.lab.playground.PlaygroundCase;
+import com.zhuzz.design.lab.DemoSupport;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
 
@@ -14,7 +14,7 @@ import static com.zhuzz.design.lab.i18n.I18nMessages.*;
  * 模板方法模式演示：复用同一处理骨架
  * Template Method demo: reuse one skeleton
  */
-public class DataProcessorDemo implements PlaygroundCase {
+public class DataProcessorDemo extends DemoSupport {
     @Override public I18nMessages pattern() { return PAT_TEMPLATE_METHOD; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Data Processor", Locale.SIMPLIFIED_CHINESE, "数据处理");

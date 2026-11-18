@@ -2,7 +2,7 @@ package com.zhuzz.design.patternz.strategy.calculator;
 
 import com.zhuzz.design.lab.i18n.I18nMessages;
 import com.zhuzz.design.lab.i18n.Messages;
-import com.zhuzz.design.lab.playground.PlaygroundCase;
+import com.zhuzz.design.lab.DemoSupport;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 
 import java.util.List;
@@ -15,7 +15,7 @@ import static com.zhuzz.design.lab.i18n.I18nMessages.*;
  * 策略模式演示：可切换运算策略的计算器
  * Strategy demo: calculator with switchable ops
  */
-public class CalculatorDemo implements PlaygroundCase {
+public class CalculatorDemo extends DemoSupport {
     @Override public I18nMessages pattern() { return PAT_STRATEGY; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Calculator", Locale.SIMPLIFIED_CHINESE, "计算器策略");

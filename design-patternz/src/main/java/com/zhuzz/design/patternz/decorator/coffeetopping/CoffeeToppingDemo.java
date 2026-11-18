@@ -1,6 +1,6 @@
 package com.zhuzz.design.patternz.decorator.coffeetopping;
 
-import com.zhuzz.design.lab.playground.PlaygroundCase;
+import com.zhuzz.design.lab.DemoSupport;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
 import com.zhuzz.design.lab.i18n.Messages;
@@ -15,7 +15,7 @@ import static com.zhuzz.design.lab.i18n.I18nMessages.*;
  * 装饰者模式演示：动态给咖啡加料
  * Decorator demo: add toppings dynamically
  */
-public class CoffeeToppingDemo implements PlaygroundCase {
+public class CoffeeToppingDemo extends DemoSupport {
     @Override public I18nMessages pattern() { return PAT_DECORATOR; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Coffee Topping", Locale.SIMPLIFIED_CHINESE, "咖啡加料");

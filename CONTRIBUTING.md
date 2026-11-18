@@ -39,7 +39,7 @@ The project is organized into two layers:
 To add a new case:
 
 1. Create a package under `com.zhuzz.design.patternz.<pattern>`.
-2. Implement the `PlaygroundCase` interface in a `*Demo` class (public, top-level, with a no-arg constructor).
+2. Extend `com.zhuzz.design.lab.DemoSupport` in a `*Demo` class (public, top-level, with a no-arg constructor). `DemoSupport` implements `PlaygroundCase` and provides a shared `main` method, so the case can also be run standalone with `java <fully-qualified-class-name>`.
 3. Provide a `README.md` and localized output resources alongside the case.
 4. Add a link to the new case in the pattern-level README's case list section.
 

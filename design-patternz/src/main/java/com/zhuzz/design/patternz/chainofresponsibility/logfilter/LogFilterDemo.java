@@ -1,7 +1,7 @@
 package com.zhuzz.design.patternz.chainofresponsibility.logfilter;
 
 import com.zhuzz.design.lab.i18n.I18nMessages;
-import com.zhuzz.design.lab.playground.PlaygroundCase;
+import com.zhuzz.design.lab.DemoSupport;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
-public class LogFilterDemo implements PlaygroundCase {
+public class LogFilterDemo extends DemoSupport {
     @Override public I18nMessages pattern() { return PAT_CHAIN_OF_RESPONSIBILITY; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Log Filter", Locale.SIMPLIFIED_CHINESE, "日志过滤");

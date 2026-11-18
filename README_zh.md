@@ -58,6 +58,31 @@ design-patternz/                              # Maven 项目（Java 21）
   -Dexec.mainClass=com.zhuzz.design.lab.Launcher
 ```
 
+方式三（不启动 GUI，直接运行单个案例）：
+
+在 IDEA 中打开任意 `*Demo` 类，点击类名旁的绿色运行按钮即可直接运行（也可在 Run Configuration 的 Program arguments 中填入参数，如 `--op=Multiplication --a=6 --b=7`）。
+
+也可在命令行运行：
+
+```bash
+# 先编译
+.\mvnw.cmd clean compile
+
+# 通过全限定类名运行任意案例
+java -cp target/classes com.zhuzz.design.patternz.decorator.datastream.DataStreamDemo
+
+# 通过 --key=value 或 --key value 传入输入项，未传入的使用默认值
+java -cp target/classes com.zhuzz.design.patternz.strategy.calculator.CalculatorDemo --op=Multiplication --a=6 --b=7
+
+# 切换输出语言（en / zh）
+java -cp target/classes com.zhuzz.design.patternz.strategy.calculator.CalculatorDemo --op=Subtraction --a=10 --b=3 --lang=en
+
+# 查看该案例支持的输入项与可选值
+java -cp target/classes com.zhuzz.design.patternz.strategy.payment.PaymentDemo --help
+```
+
+每个 `*Demo` 类都继承自 `com.zhuzz.design.lab.DemoSupport`，由该基类提供统一的 `main` 方法，因此任意案例都可通过 `java <全限定类名>` 直接独立运行。
+
 ### 界面使用
 
 - **左侧案例树**：按「创建型 / 结构型 / 行为型」分组，逐级展开到模式与案例；

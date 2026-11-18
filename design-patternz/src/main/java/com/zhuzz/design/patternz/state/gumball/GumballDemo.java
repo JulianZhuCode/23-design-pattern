@@ -1,6 +1,6 @@
 package com.zhuzz.design.patternz.state.gumball;
 
-import com.zhuzz.design.lab.playground.PlaygroundCase;
+import com.zhuzz.design.lab.DemoSupport;
 import com.zhuzz.design.lab.playground.PlaygroundInput;
 import com.zhuzz.design.lab.i18n.I18nMessages;
 import com.zhuzz.design.lab.i18n.Messages;
@@ -11,7 +11,7 @@ import java.util.Map;
 
 import static com.zhuzz.design.lab.i18n.I18nMessages.*;
 
-public class GumballDemo implements PlaygroundCase {
+public class GumballDemo extends DemoSupport {
     @Override public I18nMessages pattern() { return PAT_STATE; }
     @Override public Map<Locale, String> caseNames() {
         return Map.of(Locale.ENGLISH, "Gumball Machine", Locale.SIMPLIFIED_CHINESE, "糖果机");
