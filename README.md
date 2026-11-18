@@ -198,3 +198,7 @@ graph LR
 Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 If this project helps you, please consider giving it a star ⭐.
+
+## Contact
+
+Questions, feedback, or ideas? Feel free to reach out: [zhuzz1994@gmail.com](mailto:zhuzz1994@gmail.com).
